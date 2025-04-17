@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happipad - Profile Setup</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="profile-styles.css" />
+  </head>
+  <body>
+    <div class="notification-bar">
+      Nullam vel sem. Maecenas malesuada. Cras dapibus. Vivamus consectetuer
+      hendrerit lacus.
+    </div>
+
+    <header>
+      <div class="logo">Happipad</div>
+      <div class="header-right">
+        <a href="#" class="help-link">Help 24/7</a>
+        <div class="user-profile">
+          <span>John K</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="profile-main">
+      <div class="profile-container">
+        <div class="sidebar">
+          <h2>Steps</h2>
+          <div class="steps-list">
+            <div class="step-item">
+              <span class="step-number">1</span>
+              <span class="step-name">Basics</span>
+            </div>
+            <div class="step-item active">
+              <span class="step-number">2</span>
+              <span class="step-name">Background</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-content">
+          <h1>Who are you moving with? <span class="required">*</span></h1>
+          <p class="form-subtitle">Select all that applies</p>
+
+          <form class="profile-form">
+            <div class="options-group moving-with-options">
+              <div class="option-item">
+                Myself
+                <button type="button" class="option-select">✓</button>
+              </div>
+              <div class="option-item">
+                With a family/friends
+                <button type="button" class="option-select">✓</button>
+              </div>
+              <div class="option-item">
+                With a pet
+                <button type="button" class="option-select">✓</button>
+              </div>
+            </div>
+
+            <div class="number-input-group">
+              <label>
+                How many adults?
+                <div class="number-control">
+                  <button type="button" class="number-btn minus">−</button>
+                  <input
+                    type="number"
+                    value="1"
+                    min="1"
+                    class="number-input"
+                    id="adults-count"
+                  />
+                  <button type="button" class="number-btn plus">+</button>
+                </div>
+              </label>
+            </div>
+
+            <div class="invite-section" style="display: none">
+              <div class="invite-header">
+                <h3>Invite your roommates to join</h3>
+                <p class="form-subtitle">
+                  Since you're moving in with others, you can invite them to
+                  create their profiles. This helps everyone be on the same page
+                  during the rental process.
+                </p>
+              </div>
+
+              <div class="invite-list">
+                <!-- Invite entries will be added here by JavaScript -->
+              </div>
+
+              <button type="button" class="add-invite-button">
+                <span class="plus-icon">+</span>
+                Add another roommate
+              </button>
+            </div>
+
+            <div class="number-input-group">
+              <label>
+                How many children?
+                <div class="number-control">
+                  <button type="button" class="number-btn minus">−</button>
+                  <input type="number" value="0" min="0" class="number-input" />
+                  <button type="button" class="number-btn plus">+</button>
+                </div>
+              </label>
+            </div>
+
+            <div class="pet-section">
+              <label>What pets do you have?</label>
+              <p class="form-subtitle">Select all that applies</p>
+              <div class="options-group pet-options">
+                <div class="option-item">
+                  Dog
+                  <button type="button" class="option-select">✓</button>
+                </div>
+                <div class="option-item">
+                  Cat
+                  <button type="button" class="option-select">✓</button>
+                </div>
+                <div class="option-item">
+                  Bird
+                  <button type="button" class="option-select">✓</button>
+                </div>
+                <div class="option-item">
+                  Fish
+                  <button type="button" class="option-select">✓</button>
+                </div>
+                <div class="option-item">
+                  Other
+                  <button type="button" class="option-select">✓</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="file-upload-section">
+              <label>Drop your pet photos here.</label>
+              <p class="form-subtitle">Formats accepted: png, jpeg, jpg</p>
+              <div class="upload-area">
+                <div class="upload-content">
+                  <div class="upload-icon">🖼️</div>
+                  <span class="upload-text">Browse</span>
+                  <span class="upload-size">Maximum size 100MB</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-navigation">
+              <div class="nav-buttons">
+                <button type="button" class="back-button">Back</button>
+                <button type="submit" class="continue-button">Continue</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <p class="footer-text">
+        Happipad.org is a Canadian federally incorporated nonprofit on a mission
+        to make home sharing safe, affordable, and accessible to those who can
+        benefit most.
+      </p>
+      <div class="footer-bottom">
+        <div class="footer-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+        <div class="footer-right">
+          <span>Copyright © 2024 happipad – All Rights Reserved</span>
+          <select class="language-select">
+            <option value="en">English</option>
+          </select>
+        </div>
+      </div>
+    </footer>
+
+    <script src="profile.js"></script>
+  </body>
+</html>

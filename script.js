@@ -2,10 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const setProfileButton = document.querySelector(".primary-button");
 
   setProfileButton.addEventListener("click", () => {
-    // In a real application, this would navigate to the profile setup form
-    alert(
-      "This would navigate to the profile setup form in a real application."
-    );
+    window.location.href = "profile.html";
   });
 
   // Add hover effect to steps

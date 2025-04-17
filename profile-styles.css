@@ -1,0 +1,466 @@
+/* Profile page specific styles */
+.profile-main {
+  background-color: #f8fafc;
+  min-height: calc(100vh - 180px);
+  padding: 0;
+}
+
+/* Hide default number input spinners */
+/* For Chrome, Safari, Edge, Opera */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* For Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.profile-container {
+  display: flex;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 40px;
+  padding: 40px;
+}
+
+/* Sidebar styles */
+.sidebar {
+  width: 240px;
+  flex-shrink: 0;
+  background: white;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar h2 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: var(--text-color);
+}
+
+.steps-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.step-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.step-item:hover {
+  background-color: #f1f5f9;
+}
+
+.step-item.active {
+  background-color: #e8f0fe;
+}
+
+.step-item .step-number {
+  width: 24px;
+  height: 24px;
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.step-item .step-name {
+  font-size: 14px;
+  color: var(--text-color);
+}
+
+/* Form content styles */
+.form-content {
+  flex: 1;
+  min-width: 700px;
+  background: white;
+  padding: 32px 40px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.form-content h1 {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.required {
+  color: #dc2626;
+}
+
+.form-subtitle {
+  color: #64748b;
+  font-size: 14px;
+  margin-bottom: 24px;
+}
+
+/* Options styles */
+.options-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.pet-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+.option-item {
+  padding: 12px 16px;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  font-size: 15px;
+  color: var(--text-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: white;
+}
+
+.option-item:hover {
+  background-color: #f8fafc;
+  border-color: var(--primary-color);
+}
+
+.option-item.selected {
+  background-color: #e8f0fe;
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+.option-select {
+  background: none;
+  border: none;
+  color: transparent;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+
+.option-item.selected .option-select {
+  color: var(--primary-color);
+}
+
+/* Number input styles */
+.number-input-group {
+  margin-bottom: 24px;
+}
+
+.number-input-group label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 15px;
+  color: var(--text-color);
+}
+
+.number-control {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: white;
+  border-radius: 6px;
+}
+
+.number-btn {
+  width: 32px;
+  height: 32px;
+  border: 1px solid #e2e8f0;
+  background: white;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: var(--text-color);
+  transition: all 0.2s;
+}
+
+.number-btn:hover {
+  background-color: #f1f5f9;
+}
+
+.number-input {
+  width: 40px;
+  text-align: center;
+  border: none;
+  font-size: 15px;
+  color: var(--text-color);
+  padding: 0;
+  background: transparent;
+}
+
+/* File upload styles */
+.file-upload-section {
+  margin-bottom: 32px;
+}
+
+.upload-area {
+  border: 2px dashed #e2e8f0;
+  border-radius: 8px;
+  padding: 32px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.upload-area:hover {
+  border-color: var(--primary-color);
+  background-color: #f8fafc;
+}
+
+.upload-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.upload-icon {
+  font-size: 32px;
+  color: #64748b;
+  margin-bottom: 8px;
+}
+
+.upload-text {
+  color: var(--primary-color);
+  font-weight: 500;
+}
+
+.upload-size {
+  font-size: 14px;
+  color: #64748b;
+}
+
+/* Navigation styles */
+.form-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.step-counter {
+  font-size: 14px;
+  color: #64748b;
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+}
+
+.back-button {
+  padding: 14px 24px;
+  border: 1px solid #e2e8f0;
+  background: white;
+  border-radius: 100px;
+  color: var(--text-color);
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  min-width: 100px;
+}
+
+.back-button:hover {
+  background-color: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+.continue-button {
+  padding: 14px 24px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 100px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  flex: 1;
+}
+
+.continue-button:hover {
+  background-color: #234a6f;
+}
+
+/* Invite section styles */
+.invite-section {
+  margin: 24px 0 32px;
+  padding: 24px;
+  background-color: #f8fafc;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+}
+
+.invite-header {
+  margin-bottom: 20px;
+}
+
+.invite-header h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-color);
+  margin-bottom: 4px;
+}
+
+.invite-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.invite-entry {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.invite-input {
+  flex: 1;
+  padding: 12px 16px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 15px;
+  background: white;
+  transition: all 0.2s;
+}
+
+.invite-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(45, 91, 135, 0.1);
+}
+
+.invite-input:invalid {
+  border-color: #dc2626;
+}
+
+.send-invite-button {
+  padding: 12px 20px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.send-invite-button:disabled {
+  background-color: #94a3b8;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.send-invite-button:not(:disabled):hover {
+  background-color: #234a6f;
+}
+
+.remove-invite {
+  width: 32px;
+  height: 32px;
+  border: 1px solid #e2e8f0;
+  background: white;
+  border-radius: 6px;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  flex-shrink: 0;
+  font-size: 18px;
+}
+
+.remove-invite:hover {
+  background-color: #fee2e2;
+  border-color: #fecaca;
+  color: #dc2626;
+}
+
+.sent-invite {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+}
+
+.sent-email {
+  color: #475569;
+  font-size: 15px;
+}
+
+.sent-status {
+  color: #16a34a;
+  font-size: 14px;
+  font-weight: 500;
+  background-color: #dcfce7;
+  padding: 4px 12px;
+  border-radius: 100px;
+}
+
+.add-invite-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: white;
+  border: 1px dashed #94a3b8;
+  border-radius: 8px;
+  color: var(--primary-color);
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  width: 100%;
+  justify-content: center;
+  margin-top: 12px;
+}
+
+.add-invite-button:hover {
+  background-color: #f8fafc;
+  border-color: var(--primary-color);
+}
+
+.plus-icon {
+  font-size: 18px;
+  line-height: 1;
+}
