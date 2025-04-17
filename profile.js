@@ -204,8 +204,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   continueButton.addEventListener("click", (e) => {
     e.preventDefault();
-    // Here you would typically handle form submission
-    alert("Form would be submitted here");
+    // Navigate to the search page
+    window.location.href = "search.html";
   });
 
   // Invite Section Functionality

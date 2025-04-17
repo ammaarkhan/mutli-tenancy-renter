@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happipad - Room Search</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="search-styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+  </head>
+  <body>
+    <div class="notification-bar">
+      Nullam vel sem. Maecenas malesuada. Cras dapibus. Vivamus consectetuer
+      hendrerit lacus.
+    </div>
+
+    <header>
+      <div class="logo">
+        <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+          <!-- Add your logo SVG here -->
+        </svg>
+        happipad
+      </div>
+      <div class="header-right">
+        <button class="nav-button">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path
+              d="M10.5167 17.3417C10.2333 17.4417 9.76667 17.4417 9.48334 17.3417C7.06667 16.5167 1.66667 13.075 1.66667 7.24167C1.66667 4.66667 3.74167 2.58334 6.30001 2.58334C7.81667 2.58334 9.15834 3.31667 10 4.45C10.8417 3.31667 12.1917 2.58334 13.7 2.58334C16.2583 2.58334 18.3333 4.66667 18.3333 7.24167C18.3333 13.075 12.9333 16.5167 10.5167 17.3417Z"
+              stroke="#4869AF"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <span>Saved</span>
+        </button>
+        <button class="nav-button">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path
+              d="M16.667 6.66667C16.667 4.16667 14.667 2.16667 12.167 2.16667H7.83366C5.33366 2.16667 3.33366 4.16667 3.33366 6.66667V15.8333C3.33366 16.75 4.33366 17.3333 5.16699 16.9167L9.16699 14.75C9.66699 14.5 10.3337 14.5 10.8337 14.75L14.8337 16.9167C15.667 17.3333 16.667 16.75 16.667 15.8333V6.66667Z"
+              stroke="#4869AF"
+              stroke-width="1.5"
+            />
+          </svg>
+          <span>Notifications</span>
+          <span class="badge">2</span>
+        </button>
+        <button class="nav-button">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path
+              d="M7.50002 15.8333H12.5C15.8334 15.8333 17.5 14.1667 17.5 10.8333V7.5C17.5 4.16667 15.8334 2.5 12.5 2.5H7.50002C4.16669 2.5 2.50002 4.16667 2.50002 7.5V10.8333C2.50002 14.1667 4.16669 15.8333 7.50002 15.8333Z"
+              stroke="#4869AF"
+              stroke-width="1.5"
+            />
+            <path
+              d="M7.50002 7.5L10 9.16667L12.5 7.5"
+              stroke="#4869AF"
+              stroke-width="1.5"
+            />
+          </svg>
+          <span>Messages</span>
+          <span class="badge">1</span>
+        </button>
+        <div class="user-profile">
+          <img src="path/to/avatar.jpg" alt="John D" class="avatar" />
+          <span>John D</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="search-container">
+      <!-- Search filters section -->
+      <div class="search-filters-container">
+        <div class="search-filters">
+          <div class="search-row">
+            <div class="search-field location">
+              <label>Location</label>
+              <input
+                type="text"
+                value="Ottawa, ON"
+                placeholder="Enter location"
+              />
+            </div>
+
+            <div class="dates-container">
+              <div class="search-field date-from">
+                <label>Date from</label>
+                <input
+                  type="text"
+                  value="Wed, Jan 18, 2025"
+                  placeholder="Select date"
+                />
+              </div>
+
+              <div class="search-field date-to">
+                <label>Date to</label>
+                <input
+                  type="text"
+                  value="Wed, Jan 18, 2025"
+                  placeholder="Select date"
+                />
+              </div>
+            </div>
+
+            <button type="button" class="search-button">
+              <svg class="search-icon" viewBox="0 0 20 20" fill="none">
+                <path
+                  d="M9.58366 17.5C13.9559 17.5 17.5003 13.9555 17.5003 9.58333C17.5003 5.21116 13.9559 1.66666 9.58366 1.66666C5.21149 1.66666 1.66699 5.21116 1.66699 9.58333C1.66699 13.9555 5.21149 17.5 9.58366 17.5Z"
+                  stroke="white"
+                  stroke-width="1.5"
+                />
+                <path
+                  d="M18.3337 18.3333L16.667 16.6667"
+                  stroke="white"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </button>
+          </div>
+
+          <div class="filters-row">
+            <button class="filter-toggle">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path
+                  d="M18.3333 5.83333H13.3333"
+                  stroke="#182D4C"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M6.66667 5.83333H1.66667"
+                  stroke="#182D4C"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M13.3333 14.1667H18.3333"
+                  stroke="#182D4C"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M6.66667 14.1667H1.66667"
+                  stroke="#182D4C"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M10 8.33333C11.3807 8.33333 12.5 7.21404 12.5 5.83333C12.5 4.45262 11.3807 3.33333 10 3.33333C8.61929 3.33333 7.5 4.45262 7.5 5.83333C7.5 7.21404 8.61929 8.33333 10 8.33333Z"
+                  stroke="#182D4C"
+                  stroke-width="1.5"
+                />
+                <path
+                  d="M10 16.6667C11.3807 16.6667 12.5 15.5474 12.5 14.1667C12.5 12.786 11.3807 11.6667 10 11.6667C8.61929 11.6667 7.5 12.786 7.5 14.1667C7.5 15.5474 8.61929 16.6667 10 16.6667Z"
+                  stroke="#182D4C"
+                  stroke-width="1.5"
+                />
+              </svg>
+              All filters
+            </button>
+
+            <div class="filter-pills">
+              <button class="filter-pill">
+                Price
+                <svg class="dropdown-icon" viewBox="0 0 20 20" fill="none">
+                  <path
+                    d="M5 7.5L10 12.5L15 7.5"
+                    stroke="#182D4C"
+                    stroke-width="1.5"
+                  />
+                </svg>
+              </button>
+              <button class="filter-pill">
+                Bathroom
+                <svg class="dropdown-icon" viewBox="0 0 20 20" fill="none">
+                  <path
+                    d="M5 7.5L10 12.5L15 7.5"
+                    stroke="#182D4C"
+                    stroke-width="1.5"
+                  />
+                </svg>
+              </button>
+              <button class="filter-pill">
+                Host gender
+                <svg class="dropdown-icon" viewBox="0 0 20 20" fill="none">
+                  <path
+                    d="M5 7.5L10 12.5L15 7.5"
+                    stroke="#182D4C"
+                    stroke-width="1.5"
+                  />
+                </svg>
+              </button>
+              <button class="filter-pill">
+                Pets
+                <svg class="dropdown-icon" viewBox="0 0 20 20" fill="none">
+                  <path
+                    d="M5 7.5L10 12.5L15 7.5"
+                    stroke="#182D4C"
+                    stroke-width="1.5"
+                  />
+                </svg>
+              </button>
+              <button class="filter-pill">
+                Residents
+                <svg class="dropdown-icon" viewBox="0 0 20 20" fill="none">
+                  <path
+                    d="M5 7.5L10 12.5L15 7.5"
+                    stroke="#182D4C"
+                    stroke-width="1.5"
+                  />
+                </svg>
+              </button>
+              <button class="filter-pill">
+                House type
+                <svg class="dropdown-icon" viewBox="0 0 20 20" fill="none">
+                  <path
+                    d="M5 7.5L10 12.5L15 7.5"
+                    stroke="#182D4C"
+                    stroke-width="1.5"
+                  />
+                </svg>
+              </button>
+              <button class="filter-pill">
+                Furnishing
+                <svg class="dropdown-icon" viewBox="0 0 20 20" fill="none">
+                  <path
+                    d="M5 7.5L10 12.5L15 7.5"
+                    stroke="#182D4C"
+                    stroke-width="1.5"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main content area -->
+      <div class="search-content">
+        <!-- Listings section -->
+        <div class="listings-container">
+          <div class="listings-header">
+            <h1>OTTAWA, ON</h1>
+            <div class="listings-count">Showing 255 rooms</div>
+
+            <div class="sort-container">
+              <button class="sort-button">
+                <span class="sort-icon">↕</span>
+                Sort by
+              </button>
+            </div>
+          </div>
+
+          <div class="listings-grid">
+            <!-- Listing 1 -->
+            <div class="listing-card">
+              <div class="listing-image">
+                <img
+                  src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af"
+                  alt="Room image"
+                />
+                <button class="favorite-button">♡</button>
+                <div class="image-indicators">
+                  <span class="indicator active"></span>
+                  <span class="indicator"></span>
+                  <span class="indicator"></span>
+                  <span class="indicator"></span>
+                </div>
+              </div>
+              <div class="listing-content">
+                <h3>
+                  Bright and Quiet furnished bedroom with private bathroom
+                </h3>
+                <div class="listing-location">
+                  <span class="location-icon">📍</span>
+                  <span>Etobicoke, Toronto</span>
+                </div>
+                <div class="listing-details">
+                  <div>4 residents · Room in a house · Shared bath</div>
+                  <div>Pets free</div>
+                </div>
+                <div class="listing-price">C$ 1,200</div>
+              </div>
+            </div>
+
+            <!-- Listing 2 -->
+            <div class="listing-card">
+              <div class="listing-image">
+                <img
+                  src="https://images.unsplash.com/photo-1598928506311-c55ded91a20c"
+                  alt="Room image"
+                />
+                <button class="favorite-button">♡</button>
+                <div class="image-indicators">
+                  <span class="indicator active"></span>
+                  <span class="indicator"></span>
+                  <span class="indicator"></span>
+                </div>
+              </div>
+              <div class="listing-content">
+                <h3>Modern Studio Apartment with City View</h3>
+                <div class="listing-location">
+                  <span class="location-icon">📍</span>
+                  <span>Downtown, Ottawa</span>
+                </div>
+                <div class="listing-details">
+                  <div>2 residents · Studio · Private bath</div>
+                  <div>Pet friendly</div>
+                </div>
+                <div class="listing-price">C$ 1,450</div>
+              </div>
+            </div>
+
+            <!-- Listing 3 -->
+            <div class="listing-card">
+              <div class="listing-image">
+                <img
+                  src="https://images.unsplash.com/photo-1484101403633-562f891dc89a"
+                  alt="Room image"
+                />
+                <button class="favorite-button">♡</button>
+                <div class="image-indicators">
+                  <span class="indicator active"></span>
+                  <span class="indicator"></span>
+                </div>
+              </div>
+              <div class="listing-content">
+                <h3>Cozy Room in Historic House</h3>
+                <div class="listing-location">
+                  <span class="location-icon">📍</span>
+                  <span>Glebe, Ottawa</span>
+                </div>
+                <div class="listing-details">
+                  <div>3 residents · Heritage home · Shared bath</div>
+                  <div>No pets</div>
+                </div>
+                <div class="listing-price">C$ 950</div>
+              </div>
+            </div>
+
+            <!-- Listing 4 -->
+            <div class="listing-card">
+              <div class="listing-image">
+                <img
+                  src="https://images.unsplash.com/photo-1486304873000-235643847519"
+                  alt="Room image"
+                />
+                <button class="favorite-button">♡</button>
+                <div class="image-indicators">
+                  <span class="indicator active"></span>
+                  <span class="indicator"></span>
+                  <span class="indicator"></span>
+                </div>
+              </div>
+              <div class="listing-content">
+                <h3>Spacious Room in Modern Apartment</h3>
+                <div class="listing-location">
+                  <span class="location-icon">📍</span>
+                  <span>Westboro, Ottawa</span>
+                </div>
+                <div class="listing-details">
+                  <div>2 residents · Apartment · Private bath</div>
+                  <div>Cat friendly</div>
+                </div>
+                <div class="listing-price">C$ 1,300</div>
+              </div>
+            </div>
+
+            <!-- Listing 5 -->
+            <div class="listing-card">
+              <div class="listing-image">
+                <img
+                  src="https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6"
+                  alt="Room image"
+                />
+                <button class="favorite-button">♡</button>
+                <div class="image-indicators">
+                  <span class="indicator active"></span>
+                  <span class="indicator"></span>
+                </div>
+              </div>
+              <div class="listing-content">
+                <h3>Student-Friendly Room Near University</h3>
+                <div class="listing-location">
+                  <span class="location-icon">📍</span>
+                  <span>Sandy Hill, Ottawa</span>
+                </div>
+                <div class="listing-details">
+                  <div>4 residents · Student housing · Shared bath</div>
+                  <div>No pets</div>
+                </div>
+                <div class="listing-price">C$ 850</div>
+              </div>
+            </div>
+
+            <!-- Listing 6 -->
+            <div class="listing-card">
+              <div class="listing-image">
+                <img
+                  src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85"
+                  alt="Room image"
+                />
+                <button class="favorite-button">♡</button>
+                <div class="image-indicators">
+                  <span class="indicator active"></span>
+                  <span class="indicator"></span>
+                  <span class="indicator"></span>
+                </div>
+              </div>
+              <div class="listing-content">
+                <h3>Luxury Room in Executive Home</h3>
+                <div class="listing-location">
+                  <span class="location-icon">📍</span>
+                  <span>Rockcliffe Park, Ottawa</span>
+                </div>
+                <div class="listing-details">
+                  <div>2 residents · Executive home · Private bath</div>
+                  <div>Small pets allowed</div>
+                </div>
+                <div class="listing-price">C$ 1,800</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Map section -->
+        <div class="map-container">
+          <div id="map"></div>
+          <div class="map-controls">
+            <button class="map-control zoom-in">+</button>
+            <button class="map-control zoom-out">−</button>
+            <button class="map-control center-map">⊕</button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <p class="footer-text">
+        Happipad.org is a Canadian federally incorporated nonprofit on a mission
+        to make home sharing safe, affordable, and accessible to those who can
+        benefit most.
+      </p>
+      <div class="footer-bottom">
+        <div class="footer-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+        <div class="footer-right">
+          <span>Copyright © 2024 happipad – All Rights Reserved</span>
+          <select class="language-select">
+            <option value="en">English</option>
+          </select>
+        </div>
+      </div>
+    </footer>
+
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+    <script src="search.js"></script>
+  </body>
+</html>
