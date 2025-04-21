@@ -2,6 +2,14 @@
 document.addEventListener("DOMContentLoaded", () => {
   console.log("Application initialized");
 
+  // Add Set Profile button handler
+  const setProfileButton = document.querySelector(".primary-button");
+  if (setProfileButton) {
+    setProfileButton.addEventListener("click", () => {
+      window.location.href = "profile.html";
+    });
+  }
+
   // Initialize any necessary variables or state
   const state = {
     // Add state variables as needed
