@@ -290,4 +290,115 @@ document.addEventListener("DOMContentLoaded", () => {
       window.location.href = url;
     };
   });
+
+  // Mobile detection utility
+  const isMobile = () => window.innerWidth <= 768;
+
+  // Handle filter pills scrolling
+  const filterPills = document.querySelector(".filter-pills");
+  let isScrolling = false;
+
+  if (filterPills) {
+    filterPills.addEventListener("scroll", () => {
+      if (!isScrolling) {
+        isScrolling = true;
+        requestAnimationFrame(() => {
+          // Add shadow indicators based on scroll position
+          const showLeftShadow = filterPills.scrollLeft > 0;
+          const showRightShadow =
+            filterPills.scrollLeft <
+            filterPills.scrollWidth - filterPills.clientWidth;
+
+          filterPills.classList.toggle("shadow-left", showLeftShadow);
+          filterPills.classList.toggle("shadow-right", showRightShadow);
+
+          isScrolling = false;
+        });
+      }
+    });
+  }
+
+  // Handle map toggle on mobile
+  const mapContainer = document.querySelector(".map-container");
+  const mapToggleBtn = document.createElement("button");
+  mapToggleBtn.className = "map-toggle-btn";
+  mapToggleBtn.innerHTML = "Show Map";
+
+  if (isMobile() && mapContainer) {
+    mapContainer.parentNode.insertBefore(mapToggleBtn, mapContainer);
+
+    mapToggleBtn.addEventListener("click", () => {
+      const isMapVisible = mapContainer.classList.toggle("visible");
+      mapToggleBtn.innerHTML = isMapVisible ? "Hide Map" : "Show Map";
+
+      if (isMapVisible) {
+        // Refresh map when shown (if using leaflet)
+        if (window.map) {
+          window.map.invalidateSize();
+        }
+        // Scroll map into view
+        mapContainer.scrollIntoView({ behavior: "smooth" });
+      }
+    });
+  }
+
+  // Handle filter menu on mobile
+  const filterToggle = document.querySelector(".filter-toggle");
+  const filtersContainer = document.querySelector(".search-filters-container");
+
+  if (filterToggle && filtersContainer) {
+    filterToggle.addEventListener("click", () => {
+      filtersContainer.classList.toggle("expanded");
+      document.body.classList.toggle("filters-open");
+    });
+
+    // Close filters when clicking outside
+    document.addEventListener("click", (e) => {
+      if (
+        !filtersContainer.contains(e.target) &&
+        !filterToggle.contains(e.target) &&
+        filtersContainer.classList.contains("expanded")
+      ) {
+        filtersContainer.classList.remove("expanded");
+        document.body.classList.remove("filters-open");
+      }
+    });
+  }
+
+  // Handle responsive search field behavior
+  const searchFields = document.querySelectorAll(".search-field input");
+
+  searchFields.forEach((field) => {
+    field.addEventListener("focus", () => {
+      if (isMobile()) {
+        field.parentElement.classList.add("focused");
+        // Scroll the field into view to prevent keyboard from hiding it
+        field.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+    });
+
+    field.addEventListener("blur", () => {
+      field.parentElement.classList.remove("focused");
+    });
+  });
+
+  // Handle window resize events
+  let resizeTimeout;
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      // Update mobile-specific UI elements
+      const isMobileView = isMobile();
+      document.body.classList.toggle("is-mobile", isMobileView);
+
+      // Reset filters menu state on breakpoint change
+      if (!isMobileView) {
+        filtersContainer.classList.remove("expanded");
+        document.body.classList.remove("filters-open");
+      }
+    }, 250);
+  });
+
+  // Initialize mobile detection on load
+  document.body.classList.toggle("is-mobile", isMobile());
 });

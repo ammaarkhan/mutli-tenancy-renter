@@ -227,3 +227,165 @@ footer {
 .language-select option {
   background-color: var(--footer-color);
 }
+
+/* Mobile-specific styles */
+@media screen and (max-width: 768px) {
+  .search-container {
+    flex-direction: column;
+    padding: 0;
+  }
+
+  .search-filters-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    z-index: 1000;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 20px 20px 0 0;
+  }
+
+  .search-filters-container.expanded {
+    transform: translateY(0);
+  }
+
+  .filter-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    background: #f5f5f5;
+    border: none;
+    border-radius: 8px;
+    margin: 10px;
+    font-weight: 500;
+  }
+
+  .dates-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .dates-container > div {
+    width: 100%;
+  }
+
+  .filter-pills {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 10px;
+    position: relative;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+  }
+
+  .filter-pills::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
+
+  .filter-pills.shadow-left::before,
+  .filter-pills.shadow-right::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 20px;
+    pointer-events: none;
+  }
+
+  .filter-pills.shadow-left::before {
+    left: 0;
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 0) 100%
+    );
+  }
+
+  .filter-pills.shadow-right::after {
+    right: 0;
+    background: linear-gradient(
+      270deg,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 0) 100%
+    );
+  }
+
+  .map-container {
+    display: none;
+    height: 300px;
+    margin: 10px;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .map-container.visible {
+    display: block;
+  }
+
+  .map-toggle-btn {
+    display: block;
+    width: calc(100% - 20px);
+    margin: 10px;
+    padding: 12px;
+    background: #007aff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  .search-field.focused {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    z-index: 1001;
+    padding: 10px;
+  }
+
+  .listings-grid {
+    grid-template-columns: 1fr;
+    padding: 10px;
+    gap: 15px;
+  }
+
+  body.filters-open {
+    overflow: hidden;
+  }
+
+  .property-card {
+    margin-bottom: 15px;
+  }
+
+  .property-card img {
+    height: 200px;
+  }
+}
+
+/* General responsive improvements */
+* {
+  -webkit-tap-highlight-color: transparent;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+input,
+button,
+select {
+  font-size: 16px; /* Prevents zoom on iOS */
+}
