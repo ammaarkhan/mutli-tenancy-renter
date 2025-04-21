@@ -27,6 +27,8 @@ input[type="number"] {
   gap: 40px;
   padding: 20px;
   flex-direction: row;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* Sidebar styles */
@@ -96,6 +98,15 @@ input[type="number"] {
   padding: 24px;
   border-radius: 8px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  overflow-x: hidden;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.profile-form {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 .form-content h1 {
@@ -339,15 +350,17 @@ input[type="number"] {
 
 /* Invite section styles */
 .invite-section {
-  margin: 24px 0 32px;
-  padding: 24px;
+  margin: 24px 0;
+  padding: 20px;
   background-color: #f8fafc;
-  border-radius: 12px;
-  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .invite-header {
   margin-bottom: 20px;
+  width: 100%;
 }
 
 .invite-header h3 {
@@ -361,23 +374,28 @@ input[type="number"] {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  margin-bottom: 20px;
+  margin: 16px 0;
+  width: 100%;
 }
 
 .invite-entry {
   display: flex;
-  gap: 12px;
   align-items: center;
+  gap: 8px;
+  width: 100%;
+  flex-wrap: wrap;
+  box-sizing: border-box;
 }
 
 .invite-input {
   flex: 1;
-  padding: 12px 16px;
+  min-width: 200px;
+  max-width: 100%;
+  padding: 8px 12px;
   border: 1px solid #e2e8f0;
-  border-radius: 8px;
-  font-size: 15px;
-  background: white;
-  transition: all 0.2s;
+  border-radius: 6px;
+  font-size: 14px;
+  box-sizing: border-box;
 }
 
 .invite-input:focus {
@@ -492,8 +510,8 @@ input[type="number"] {
 @media (max-width: 768px) {
   .profile-container {
     flex-direction: column;
-    padding: 16px;
-    gap: 24px;
+    padding: 12px;
+    gap: 20px;
   }
 
   .sidebar {
@@ -503,16 +521,47 @@ input[type="number"] {
 
   .form-content {
     padding: 16px;
+    width: 100%;
   }
 
   .form-content h1 {
     font-size: 20px;
   }
 
+  .invite-section {
+    padding: 16px;
+    margin: 16px 0;
+  }
+
+  .invite-entry {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .invite-input {
+    flex: 1;
+    min-width: 0;
+    margin-right: auto;
+  }
+
+  .remove-invite {
+    order: 2;
+  }
+
+  .send-invite-button {
+    order: 3;
+    width: 100%;
+    margin-top: 8px;
+  }
+
   .number-label {
     flex-direction: column;
     align-items: flex-start;
     gap: 8px;
+    width: 100%;
   }
 
   .number-control {
@@ -520,9 +569,15 @@ input[type="number"] {
     justify-content: space-between;
   }
 
+  .number-input {
+    flex: 1;
+    width: auto;
+    max-width: 60px;
+  }
+
   .nav-buttons {
     flex-direction: column;
-    width: 100%;
+    gap: 12px;
   }
 
   .back-button,
@@ -530,11 +585,12 @@ input[type="number"] {
     width: 100%;
   }
 
-  .upload-area {
-    padding: 16px;
-  }
-
   .pet-options {
     grid-template-columns: 1fr;
+  }
+
+  .option-item {
+    width: 100%;
+    box-sizing: border-box;
   }
 }
