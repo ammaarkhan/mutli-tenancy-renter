@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happipad - Chat with Host</title>
+    <link rel="stylesheet" href="chat-styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+      <div class="nav-content">
+        <div class="logo">happipad</div>
+        <div class="nav-controls">
+          <a href="#" class="nav-item"><i class="far fa-heart"></i> Saved</a>
+          <a href="#" class="nav-item"
+            ><i class="far fa-bell"></i> Notifications</a
+          >
+          <a href="#" class="nav-item"
+            ><i class="far fa-comment"></i> Messages</a
+          >
+          <a href="#" class="nav-item user">
+            <img
+              src="https://images.unsplash.com/vector-1740737650825-1ce4f5377085?q=80&w=1480&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              alt="User"
+            />
+            John
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="chat-container">
+      <!-- Chat Sidebar -->
+      <div class="chat-sidebar">
+        <div class="chat-header">
+          <h2>Messages</h2>
+          <button class="new-chat-btn">
+            <i class="fas fa-plus"></i>
+          </button>
+        </div>
+
+        <div class="chat-search">
+          <i class="fas fa-search"></i>
+          <input type="text" placeholder="Search conversations..." />
+        </div>
+
+        <div class="chat-list">
+          <div class="chat-item active">
+            <div class="chat-item-avatar">
+              <img
+                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="Host"
+              />
+            </div>
+            <div class="chat-item-content">
+              <div class="chat-item-header">
+                <h3>David Miller</h3>
+                <span class="chat-time">2m ago</span>
+              </div>
+              <p class="chat-preview">
+                Thank you for your interest in the property...
+              </p>
+              <div class="chat-item-footer">
+                <span class="property-name">Master Bedroom · Corktown</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chat Main -->
+      <div class="chat-main">
+        <div class="chat-main-header">
+          <div class="chat-contact">
+            <div class="group-chat-info">
+              <h2>Master Bedroom - Group Chat</h2>
+              <span class="participants-count">4 participants</span>
+            </div>
+          </div>
+          <div class="chat-actions">
+            <button class="action-btn" title="Add participant">
+              <i class="fas fa-user-plus"></i>
+            </button>
+            <button class="action-btn" title="Video call">
+              <i class="fas fa-video"></i>
+            </button>
+            <button class="action-btn" title="More options">
+              <i class="fas fa-ellipsis-v"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="participants-bar">
+          <div class="participant host">
+            <img
+              src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              alt="David Miller"
+            />
+            <div class="participant-info">
+              <span class="participant-name">David Miller</span>
+              <span class="participant-badge host">Host</span>
+            </div>
+          </div>
+          <div class="participant">
+            <img
+              src="https://images.unsplash.com/vector-1740737650825-1ce4f5377085?q=80&w=1480&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              alt="John (You)"
+            />
+            <div class="participant-info">
+              <span class="participant-name">John (You)</span>
+              <span class="participant-badge you">Primary</span>
+            </div>
+          </div>
+          <div class="participant">
+            <img
+              src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=1470"
+              alt="Sarah Chen"
+            />
+            <div class="participant-info">
+              <span class="participant-name">Sarah Chen</span>
+              <span class="participant-badge">Co-applicant</span>
+            </div>
+          </div>
+          <div class="participant">
+            <img
+              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1470"
+              alt="Michael Ross"
+            />
+            <div class="participant-info">
+              <span class="participant-name">Michael Ross</span>
+              <span class="participant-badge">Co-applicant</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="chat-messages">
+          <div class="message-group">
+            <div class="message-date">Today</div>
+
+            <div class="message received">
+              <img
+                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="David Miller"
+                class="message-avatar"
+              />
+              <div class="message-content">
+                <span class="message-sender">David Miller</span>
+                <p>
+                  Hello everyone! Thank you for your interest in the Master
+                  Bedroom at Corktown. I see you're applying as a group. How can
+                  I help you today?
+                </p>
+                <span class="message-time">10:30 AM</span>
+              </div>
+            </div>
+
+            <div class="message sent">
+              <div class="message-content">
+                <span class="message-sender">You</span>
+                <p>
+                  Hi David! Yes, we're interested in renting the Master Bedroom
+                  as a group. Is it still available for July 1st?
+                </p>
+                <span class="message-time">10:32 AM</span>
+              </div>
+            </div>
+
+            <div class="message received">
+              <img
+                src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=1470"
+                alt="Sarah Chen"
+                class="message-avatar"
+              />
+              <div class="message-content">
+                <span class="message-sender">Sarah Chen</span>
+                <p>
+                  We're all students at UofT and looking for a place close to
+                  campus. Could we schedule a viewing together?
+                </p>
+                <span class="message-time">10:33 AM</span>
+              </div>
+            </div>
+
+            <div class="message received">
+              <img
+                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="David Miller"
+                class="message-avatar"
+              />
+              <div class="message-content">
+                <span class="message-sender">David Miller</span>
+                <p>
+                  Yes, the room is available from July 1st! I'd be happy to show
+                  you all the place. How about this Saturday at 2 PM?
+                </p>
+                <span class="message-time">10:34 AM</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="chat-input">
+          <button class="attachment-btn" title="Add attachment">
+            <i class="fas fa-paperclip"></i>
+          </button>
+          <div class="input-wrapper">
+            <input type="text" placeholder="Type a message to group..." />
+            <button class="emoji-btn" title="Add emoji">
+              <i class="far fa-smile"></i>
+            </button>
+          </div>
+          <button class="send-btn" title="Send message">
+            <i class="fas fa-paper-plane"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Property Preview -->
+      <div class="property-preview">
+        <div class="property-card">
+          <img
+            src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?q=80&w=1560&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="Property"
+          />
+          <div class="property-info">
+            <h3>Master Bedroom in Corktown</h3>
+            <p class="property-location">Toronto, ON</p>
+            <div class="property-price">
+              <span class="price">C$ 800</span>
+              <span class="period">/month</span>
+            </div>
+            <button class="view-listing-btn">View Listing</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="chat.js"></script>
+  </body>
+</html>
