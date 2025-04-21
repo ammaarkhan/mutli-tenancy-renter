@@ -143,3 +143,137 @@ document.querySelector(".book-now-btn").addEventListener("click", () => {
 
 // Initialize the page when DOM is loaded
 document.addEventListener("DOMContentLoaded", initializePage);
+
+document.addEventListener("DOMContentLoaded", function () {
+  // Mobile detection utility
+  const isMobile = () => window.innerWidth <= 768;
+
+  // Handle booking sidebar on mobile
+  const bookingSidebar = document.querySelector(".booking-sidebar");
+  const priceDetails = document.querySelector(".price-details");
+
+  if (bookingSidebar && isMobile()) {
+    // Make price details clickable to expand sidebar
+    priceDetails.style.cursor = "pointer";
+    priceDetails.addEventListener("click", () => {
+      bookingSidebar.classList.toggle("expanded");
+    });
+
+    // Close sidebar when clicking outside
+    document.addEventListener("click", (e) => {
+      if (!bookingSidebar.contains(e.target)) {
+        bookingSidebar.classList.remove("expanded");
+      }
+    });
+
+    // Prevent sidebar from closing when clicking inside
+    bookingSidebar.addEventListener("click", (e) => {
+      e.stopPropagation();
+    });
+  }
+
+  // Handle image gallery
+  const mainImage = document.querySelector(".main-image img");
+  const thumbnails = document.querySelectorAll(".thumbnail-grid img");
+
+  thumbnails.forEach((thumbnail) => {
+    thumbnail.addEventListener("click", () => {
+      // Update main image
+      const newSrc = thumbnail.src;
+      mainImage.src = newSrc;
+
+      // Update active state
+      thumbnails.forEach((thumb) => thumb.classList.remove("active"));
+      thumbnail.classList.add("active");
+    });
+  });
+
+  // Handle property navigation scrolling
+  const propertyNav = document.querySelector(".property-nav");
+  if (propertyNav) {
+    let isScrolling = false;
+
+    propertyNav.addEventListener("scroll", () => {
+      if (!isScrolling) {
+        isScrolling = true;
+        requestAnimationFrame(() => {
+          const showLeftShadow = propertyNav.scrollLeft > 0;
+          const showRightShadow =
+            propertyNav.scrollLeft <
+            propertyNav.scrollWidth - propertyNav.clientWidth;
+
+          propertyNav.classList.toggle("shadow-left", showLeftShadow);
+          propertyNav.classList.toggle("shadow-right", showRightShadow);
+          isScrolling = false;
+        });
+      }
+    });
+
+    // Handle nav item clicks
+    const navItems = propertyNav.querySelectorAll("a");
+    navItems.forEach((item) => {
+      item.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        // Remove active class from all items
+        navItems.forEach((navItem) => navItem.classList.remove("active"));
+
+        // Add active class to clicked item
+        item.classList.add("active");
+
+        // Scroll to section
+        const targetId = item.getAttribute("href").substring(1);
+        const targetSection = document.getElementById(targetId);
+        if (targetSection) {
+          const yOffset = -100; // Account for sticky header
+          const y =
+            targetSection.getBoundingClientRect().top +
+            window.pageYOffset +
+            yOffset;
+          window.scrollTo({ top: y, behavior: "smooth" });
+        }
+      });
+    });
+  }
+
+  // Handle date inputs
+  const dateInputs = document.querySelectorAll(".date-field input");
+  dateInputs.forEach((input) => {
+    // Prevent keyboard on mobile
+    if (isMobile()) {
+      input.addEventListener("click", (e) => {
+        e.preventDefault();
+        input.blur();
+        // Here you would typically open a custom date picker
+        console.log("Open custom date picker");
+      });
+    }
+  });
+
+  // Add co-applicant button
+  const addApplicantBtn = document.querySelector(".add-applicant");
+  if (addApplicantBtn) {
+    addApplicantBtn.addEventListener("click", () => {
+      console.log("Open co-applicant modal");
+      // Here you would typically open a modal to add co-applicant
+    });
+  }
+
+  // Handle window resize
+  let resizeTimeout;
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      const isMobileView = isMobile();
+      document.body.classList.toggle("is-mobile", isMobileView);
+
+      // Reset sidebar state on breakpoint change
+      if (!isMobileView && bookingSidebar) {
+        bookingSidebar.classList.remove("expanded");
+      }
+    }, 250);
+  });
+
+  // Initialize mobile detection
+  document.body.classList.toggle("is-mobile", isMobile());
+});
