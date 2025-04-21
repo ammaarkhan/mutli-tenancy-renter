@@ -9,12 +9,6 @@
     <title>Happipad - Room Search</title>
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="search-styles.css" />
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-      crossorigin=""
-    />
   </head>
   <body>
     <div class="notification-bar">
@@ -527,16 +521,6 @@
             </div>
           </div>
         </div>
-
-        <!-- Map section -->
-        <div class="map-container">
-          <div id="map"></div>
-          <div class="map-controls">
-            <button class="map-control zoom-in">+</button>
-            <button class="map-control zoom-out">−</button>
-            <button class="map-control center-map">⊕</button>
-          </div>
-        </div>
       </div>
     </main>
 
@@ -560,11 +544,6 @@
       </div>
     </footer>
 
-    <script
-      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-      crossorigin=""
-    ></script>
     <script src="search.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
@@ -631,16 +610,6 @@
             handleClickOutside(e, roomsBtn, roomsDropdown);
           }
         });
-
-        // FOR LEAFLET MAP ISSUE:
-        // Add CSS to ensure dropdown is above map
-        var style = document.createElement("style");
-        style.textContent =
-          "#house-dropdown, #rooms-dropdown { z-index: 100000 !important; }" +
-          ".leaflet-map-pane { z-index: 1 !important; }" +
-          ".leaflet-google-layer { z-index: 1 !important; }" +
-          ".leaflet-top, .leaflet-bottom { z-index: 1000 !important; }";
-        document.head.appendChild(style);
       });
     </script>
   </body>

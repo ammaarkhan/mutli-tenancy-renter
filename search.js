@@ -10,21 +10,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Initialize the map
-  const map = L.map("map").setView([43.6532, -79.3832], 13); // Toronto coordinates
-
-  // Add OpenStreetMap tiles
-  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    attribution:
-      '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-    maxZoom: 19,
-  }).addTo(map);
-
-  // Sample property coordinates
+  // Sample property data
   const properties = [
     {
       id: "1",
-      latlng: [43.653, -79.383],
       title: "Room with shared bath and kitchen in Corktown, Toronto.",
       location: "Etobicoke, Toronto",
       price: "C$ 1,200",
@@ -33,7 +22,6 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     {
       id: "2",
-      latlng: [43.659, -79.391],
       title: "Bright and Quiet furnished bedroom with private bathroom",
       location: "Etobicoke, Toronto",
       price: "C$ 1,200",
@@ -42,7 +30,6 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     {
       id: "3",
-      latlng: [43.645, -79.376],
       title: "Cozy room in downtown Toronto with amenities",
       location: "Downtown, Toronto",
       price: "C$ 1,300",
@@ -50,67 +37,6 @@ document.addEventListener("DOMContentLoaded", () => {
       type: "shared",
     },
   ];
-
-  // Add markers for properties
-  let markers = [];
-  function addMarkers(filteredProperties = properties) {
-    // Clear existing markers
-    markers.forEach((marker) => map.removeLayer(marker));
-    markers = [];
-
-    // Add new markers
-    filteredProperties.forEach((property) => {
-      const marker = L.marker(property.latlng).addTo(map);
-      markers.push(marker);
-
-      // Add popup with property info
-      marker.bindPopup(`
-        <div class="map-popup">
-          <h3>${property.title}</h3>
-          <div class="map-popup-location">${property.location}</div>
-          <div class="map-popup-price">${property.price}</div>
-          <a href="listing.html?id=${property.id}" class="view-listing-btn">View Listing</a>
-        </div>
-      `);
-
-      // Show property card in overlay when marker is clicked
-      marker.on("click", () => {
-        const mapCard = document.querySelector(".map-card");
-        mapCard.querySelector("h3").textContent = property.title;
-        mapCard.querySelector(
-          ".map-card-location span:last-child"
-        ).textContent = property.location;
-        mapCard.querySelector(".map-card-price").textContent = property.price;
-
-        // Add view listing button to map card
-        const viewListingBtn =
-          mapCard.querySelector(".view-listing-btn") ||
-          document.createElement("a");
-        viewListingBtn.href = `listing.html?id=${property.id}`;
-        viewListingBtn.className = "view-listing-btn";
-        viewListingBtn.textContent = "View Listing";
-        if (!mapCard.querySelector(".view-listing-btn")) {
-          mapCard.appendChild(viewListingBtn);
-        }
-
-        // Show the map overlay
-        document.querySelector(".map-overlay").style.display = "block";
-      });
-    });
-  }
-
-  // Map control buttons
-  document.querySelector(".zoom-in").addEventListener("click", () => {
-    map.zoomIn();
-  });
-
-  document.querySelector(".zoom-out").addEventListener("click", () => {
-    map.zoomOut();
-  });
-
-  document.querySelector(".center-map").addEventListener("click", () => {
-    map.setView([43.6532, -79.3832], 13);
-  });
 
   // Filter functionality
   const houseTypeFilterContainer = document.getElementById(
@@ -150,9 +76,6 @@ document.addEventListener("DOMContentLoaded", () => {
         return selectedRooms.includes(property.rooms.toString());
       });
     }
-
-    // Update markers on the map
-    addMarkers(filteredProperties);
 
     // Update listings count
     const listingsCount = document.querySelector(".listings-count");
@@ -199,42 +122,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Handle filter button click
-  houseTypeFilterButton.addEventListener("click", (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-
-    // Close any other open dropdowns
-    document
-      .querySelectorAll(".filter-pill-container.active")
-      .forEach((container) => {
-        if (container !== houseTypeFilterContainer) {
-          container.classList.remove("active");
-        }
-      });
-
-    // Toggle this dropdown
-    houseTypeFilterContainer.classList.toggle("active");
-  });
-
-  // Handle clicks on the dropdown menu to prevent closing
-  houseTypeFilterContainer
-    .querySelector(".dropdown-menu")
-    .addEventListener("click", (e) => {
-      e.stopPropagation();
-    });
-
-  // Close dropdowns when clicking outside
-  document.addEventListener("click", (e) => {
-    if (!e.target.closest(".filter-pill-container")) {
-      document
-        .querySelectorAll(".filter-pill-container.active")
-        .forEach((container) => {
-          container.classList.remove("active");
-        });
-    }
-  });
-
   // Favorite buttons
   document.querySelectorAll(".favorite-button").forEach((button) => {
     button.addEventListener("click", (e) => {
@@ -252,43 +139,6 @@ document.addEventListener("DOMContentLoaded", () => {
     input.addEventListener("focus", () => {
       console.log("Date picker would open here");
     });
-  });
-
-  // Swap dates button
-  const swapDatesBtn = document.querySelector(".swap-dates-btn");
-  if (swapDatesBtn) {
-    swapDatesBtn.addEventListener("click", () => {
-      const fromDate = document.querySelector(".date-from input").value;
-      const toDate = document.querySelector(".date-to input").value;
-
-      document.querySelector(".date-from input").value = toDate;
-      document.querySelector(".date-to input").value = fromDate;
-    });
-  }
-
-  // Initialize markers
-  addMarkers();
-
-  console.log("Setting up click handlers...");
-  const cards = document.querySelectorAll(".listing-card");
-  console.log("Found listing cards:", cards.length);
-
-  // Add click handlers to all listing cards
-  cards.forEach((card, index) => {
-    console.log("Adding click handler to card", index);
-    card.style.cursor = "pointer";
-    card.onclick = function (e) {
-      console.log("Card clicked!", index);
-      // Don't navigate if clicking the favorite button
-      if (e.target.closest(".favorite-button")) {
-        console.log("Favorite button clicked, not navigating");
-        return;
-      }
-      // Navigate to the listing page
-      const url = `listing.html?id=${properties[index].id}`;
-      console.log("Navigating to:", url);
-      window.location.href = url;
-    };
   });
 
   // Mobile detection utility
@@ -314,30 +164,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
           isScrolling = false;
         });
-      }
-    });
-  }
-
-  // Handle map toggle on mobile
-  const mapContainer = document.querySelector(".map-container");
-  const mapToggleBtn = document.createElement("button");
-  mapToggleBtn.className = "map-toggle-btn";
-  mapToggleBtn.innerHTML = "Show Map";
-
-  if (isMobile() && mapContainer) {
-    mapContainer.parentNode.insertBefore(mapToggleBtn, mapContainer);
-
-    mapToggleBtn.addEventListener("click", () => {
-      const isMapVisible = mapContainer.classList.toggle("visible");
-      mapToggleBtn.innerHTML = isMapVisible ? "Hide Map" : "Show Map";
-
-      if (isMapVisible) {
-        // Refresh map when shown (if using leaflet)
-        if (window.map) {
-          window.map.invalidateSize();
-        }
-        // Scroll map into view
-        mapContainer.scrollIntoView({ behavior: "smooth" });
       }
     });
   }

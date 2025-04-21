@@ -12,7 +12,8 @@
 /* Search container */
 .search-container {
   display: flex;
-  height: calc(100vh - var(--header-height) - var(--notification-height));
+  flex-direction: column;
+  min-height: calc(100vh - var(--header-height) - var(--notification-height));
   position: relative;
 }
 
@@ -87,7 +88,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  align-self: flex-end;
   height: 44px;
   min-width: 44px;
 }
@@ -142,17 +142,16 @@
 
 /* Main content area */
 .search-content {
-  display: flex;
   flex: 1;
   min-height: 0;
 }
 
 /* Listings section */
 .listings-container {
-  flex: 1;
+  max-width: 1400px;
+  margin: 0 auto;
   padding: 24px;
   overflow-y: auto;
-  min-width: 0;
 }
 
 .listings-header {
@@ -192,7 +191,7 @@
 /* Listings grid */
 .listings-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 24px;
 }
 
@@ -299,7 +298,7 @@
 .map-container {
   width: 40%;
   position: relative;
-  display: none;
+  display: block;
 }
 
 #map {
@@ -329,20 +328,82 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Responsive design */
-@media (min-width: 1024px) {
-  .map-container {
-    display: block;
-  }
+/* Map toggle button styles */
+.map-toggle-btn {
+  display: none; /* Hidden by default, shown in mobile */
+  width: calc(100% - 20px);
+  margin: 10px;
+  padding: 12px;
+  background: #007aff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
 }
 
-@media (max-width: 768px) {
+/* Responsive design - Desktop first */
+@media (min-width: 769px) {
+  .filter-toggle {
+    display: none; /* Hide mobile filter toggle on desktop */
+  }
+
+  .map-toggle-btn {
+    display: none; /* Hide map toggle on desktop */
+  }
+
   .search-filters-container {
-    padding: 12px;
+    position: sticky;
+    transform: none;
+    max-height: none;
+    overflow: visible;
+    box-shadow: none;
+    border-radius: 0;
   }
 
   .search-row {
-    gap: 12px;
+    flex-wrap: nowrap;
+  }
+
+  .dates-container {
+    flex-direction: row;
+  }
+
+  .filter-pills {
+    flex-wrap: wrap;
+    overflow: visible;
+    padding: 0;
+  }
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .search-container {
+    height: auto;
+  }
+
+  .search-filters-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    z-index: 1000;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 20px 20px 0 0;
+  }
+
+  .search-filters-container.expanded {
+    transform: translateY(0);
+  }
+
+  .search-row {
+    flex-wrap: wrap;
   }
 
   .search-field {
@@ -351,11 +412,8 @@
 
   .dates-container {
     width: 100%;
-    min-width: 100%;
-  }
-
-  .search-button {
-    width: 100%;
+    flex-direction: column;
+    gap: 10px;
   }
 
   .listings-container {
@@ -367,15 +425,13 @@
     gap: 16px;
   }
 
-  .listing-card {
-    max-width: 100%;
-  }
-
   .filter-pills {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-    padding-bottom: 8px;
-    margin-bottom: -8px;
+    padding: 10px;
+    position: relative;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
     flex-wrap: nowrap;
   }
 
@@ -383,8 +439,46 @@
     display: none;
   }
 
-  .filter-pill {
-    flex-shrink: 0;
+  .filter-pills.shadow-left::before,
+  .filter-pills.shadow-right::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 20px;
+    pointer-events: none;
+  }
+
+  .filter-pills.shadow-left::before {
+    left: 0;
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 0) 100%
+    );
+  }
+
+  .filter-pills.shadow-right::after {
+    right: 0;
+    background: linear-gradient(
+      270deg,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 0) 100%
+    );
+  }
+
+  .search-field.focused {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    z-index: 1001;
+    padding: 10px;
+  }
+
+  body.filters-open {
+    overflow: hidden;
   }
 }
 
