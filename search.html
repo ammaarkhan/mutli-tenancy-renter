@@ -261,6 +261,23 @@
           -webkit-tap-highlight-color: transparent; /* Fix for mobile tap highlight */
         }
       }
+
+      /* Make listing cards clickable */
+      .listing-card {
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .listing-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .listing-link {
+        text-decoration: none;
+        color: inherit;
+        display: block;
+      }
     </style>
   </head>
   <body>
@@ -491,179 +508,193 @@
 
           <div class="listings-grid" role="list">
             <!-- Listing 1 -->
-            <div class="listing-card" role="listitem">
-              <div class="listing-image">
-                <img
-                  src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af"
-                  alt="Room image"
-                />
-                <button class="favorite-button">♡</button>
-                <div class="image-indicators">
-                  <span class="indicator active"></span>
-                  <span class="indicator"></span>
-                  <span class="indicator"></span>
-                  <span class="indicator"></span>
-                </div>
-              </div>
-              <div class="listing-content">
-                <h3>
-                  Bright and Quiet furnished bedroom with private bathroom
-                </h3>
-                <div class="listing-location">
-                  <span class="location-icon">📍</span>
-                  <span>Etobicoke, Toronto</span>
-                </div>
-                <div class="listing-details">
-                  <div>
-                    2 rooms · 4 residents · Room in a house · Shared bath
+            <a href="listing.html" class="listing-link">
+              <div class="listing-card" role="listitem">
+                <div class="listing-image">
+                  <img
+                    src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af"
+                    alt="Room image"
+                  />
+                  <button class="favorite-button">♡</button>
+                  <div class="image-indicators">
+                    <span class="indicator active"></span>
+                    <span class="indicator"></span>
+                    <span class="indicator"></span>
+                    <span class="indicator"></span>
                   </div>
-                  <div>Pets free</div>
                 </div>
-                <div class="listing-price">C$ 1,200</div>
+                <div class="listing-content">
+                  <h3>
+                    Bright and Quiet furnished bedroom with private bathroom
+                  </h3>
+                  <div class="listing-location">
+                    <span class="location-icon">📍</span>
+                    <span>Etobicoke, Toronto</span>
+                  </div>
+                  <div class="listing-details">
+                    <div>
+                      2 rooms · 4 residents · Room in a house · Shared bath
+                    </div>
+                    <div>Pets free</div>
+                  </div>
+                  <div class="listing-price">C$ 1,200</div>
+                </div>
               </div>
-            </div>
+            </a>
 
             <!-- Listing 2 -->
-            <div class="listing-card" role="listitem">
-              <div class="listing-image">
-                <img
-                  src="https://images.unsplash.com/photo-1598928506311-c55ded91a20c"
-                  alt="Room image"
-                />
-                <button class="favorite-button">♡</button>
-                <div class="image-indicators">
-                  <span class="indicator active"></span>
-                  <span class="indicator"></span>
-                  <span class="indicator"></span>
+            <a href="listing.html" class="listing-link">
+              <div class="listing-card" role="listitem">
+                <div class="listing-image">
+                  <img
+                    src="https://images.unsplash.com/photo-1598928506311-c55ded91a20c"
+                    alt="Room image"
+                  />
+                  <button class="favorite-button">♡</button>
+                  <div class="image-indicators">
+                    <span class="indicator active"></span>
+                    <span class="indicator"></span>
+                    <span class="indicator"></span>
+                  </div>
+                </div>
+                <div class="listing-content">
+                  <h3>Modern Studio Apartment with City View</h3>
+                  <div class="listing-location">
+                    <span class="location-icon">📍</span>
+                    <span>Downtown, Ottawa</span>
+                  </div>
+                  <div class="listing-details">
+                    <div>1 room · 2 residents · Studio · Private bath</div>
+                    <div>Pet friendly</div>
+                  </div>
+                  <div class="listing-price">C$ 1,450</div>
                 </div>
               </div>
-              <div class="listing-content">
-                <h3>Modern Studio Apartment with City View</h3>
-                <div class="listing-location">
-                  <span class="location-icon">📍</span>
-                  <span>Downtown, Ottawa</span>
-                </div>
-                <div class="listing-details">
-                  <div>1 room · 2 residents · Studio · Private bath</div>
-                  <div>Pet friendly</div>
-                </div>
-                <div class="listing-price">C$ 1,450</div>
-              </div>
-            </div>
+            </a>
 
             <!-- Listing 3 -->
-            <div class="listing-card" role="listitem">
-              <div class="listing-image">
-                <img
-                  src="https://images.unsplash.com/photo-1484101403633-562f891dc89a"
-                  alt="Room image"
-                />
-                <button class="favorite-button">♡</button>
-                <div class="image-indicators">
-                  <span class="indicator active"></span>
-                  <span class="indicator"></span>
+            <a href="listing.html" class="listing-link">
+              <div class="listing-card" role="listitem">
+                <div class="listing-image">
+                  <img
+                    src="https://images.unsplash.com/photo-1484101403633-562f891dc89a"
+                    alt="Room image"
+                  />
+                  <button class="favorite-button">♡</button>
+                  <div class="image-indicators">
+                    <span class="indicator active"></span>
+                    <span class="indicator"></span>
+                  </div>
+                </div>
+                <div class="listing-content">
+                  <h3>Cozy Room in Historic House</h3>
+                  <div class="listing-location">
+                    <span class="location-icon">📍</span>
+                    <span>Glebe, Ottawa</span>
+                  </div>
+                  <div class="listing-details">
+                    <div>
+                      3 rooms · 3 residents · Heritage home · Shared bath
+                    </div>
+                    <div>No pets</div>
+                  </div>
+                  <div class="listing-price">C$ 950</div>
                 </div>
               </div>
-              <div class="listing-content">
-                <h3>Cozy Room in Historic House</h3>
-                <div class="listing-location">
-                  <span class="location-icon">📍</span>
-                  <span>Glebe, Ottawa</span>
-                </div>
-                <div class="listing-details">
-                  <div>3 rooms · 3 residents · Heritage home · Shared bath</div>
-                  <div>No pets</div>
-                </div>
-                <div class="listing-price">C$ 950</div>
-              </div>
-            </div>
+            </a>
 
             <!-- Listing 4 -->
-            <div class="listing-card" role="listitem">
-              <div class="listing-image">
-                <img
-                  src="https://images.unsplash.com/photo-1486304873000-235643847519"
-                  alt="Room image"
-                />
-                <button class="favorite-button">♡</button>
-                <div class="image-indicators">
-                  <span class="indicator active"></span>
-                  <span class="indicator"></span>
-                  <span class="indicator"></span>
+            <a href="listing.html" class="listing-link">
+              <div class="listing-card" role="listitem">
+                <div class="listing-image">
+                  <img
+                    src="https://images.unsplash.com/photo-1486304873000-235643847519"
+                    alt="Room image"
+                  />
+                  <button class="favorite-button">♡</button>
+                  <div class="image-indicators">
+                    <span class="indicator active"></span>
+                    <span class="indicator"></span>
+                    <span class="indicator"></span>
+                  </div>
+                </div>
+                <div class="listing-content">
+                  <h3>Spacious Room in Modern Apartment</h3>
+                  <div class="listing-location">
+                    <span class="location-icon">📍</span>
+                    <span>Westboro, Ottawa</span>
+                  </div>
+                  <div class="listing-details">
+                    <div>2 rooms · 2 residents · Apartment · Private bath</div>
+                    <div>Cat friendly</div>
+                  </div>
+                  <div class="listing-price">C$ 1,300</div>
                 </div>
               </div>
-              <div class="listing-content">
-                <h3>Spacious Room in Modern Apartment</h3>
-                <div class="listing-location">
-                  <span class="location-icon">📍</span>
-                  <span>Westboro, Ottawa</span>
-                </div>
-                <div class="listing-details">
-                  <div>2 rooms · 2 residents · Apartment · Private bath</div>
-                  <div>Cat friendly</div>
-                </div>
-                <div class="listing-price">C$ 1,300</div>
-              </div>
-            </div>
+            </a>
 
             <!-- Listing 5 -->
-            <div class="listing-card" role="listitem">
-              <div class="listing-image">
-                <img
-                  src="https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6"
-                  alt="Room image"
-                />
-                <button class="favorite-button">♡</button>
-                <div class="image-indicators">
-                  <span class="indicator active"></span>
-                  <span class="indicator"></span>
-                </div>
-              </div>
-              <div class="listing-content">
-                <h3>Student-Friendly Room Near University</h3>
-                <div class="listing-location">
-                  <span class="location-icon">📍</span>
-                  <span>Sandy Hill, Ottawa</span>
-                </div>
-                <div class="listing-details">
-                  <div>
-                    4 rooms · 4 residents · Student housing · Shared bath
+            <a href="listing.html" class="listing-link">
+              <div class="listing-card" role="listitem">
+                <div class="listing-image">
+                  <img
+                    src="https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6"
+                    alt="Room image"
+                  />
+                  <button class="favorite-button">♡</button>
+                  <div class="image-indicators">
+                    <span class="indicator active"></span>
+                    <span class="indicator"></span>
                   </div>
-                  <div>No pets</div>
                 </div>
-                <div class="listing-price">C$ 850</div>
+                <div class="listing-content">
+                  <h3>Student-Friendly Room Near University</h3>
+                  <div class="listing-location">
+                    <span class="location-icon">📍</span>
+                    <span>Sandy Hill, Ottawa</span>
+                  </div>
+                  <div class="listing-details">
+                    <div>
+                      4 rooms · 4 residents · Student housing · Shared bath
+                    </div>
+                    <div>No pets</div>
+                  </div>
+                  <div class="listing-price">C$ 850</div>
+                </div>
               </div>
-            </div>
+            </a>
 
             <!-- Listing 6 -->
-            <div class="listing-card" role="listitem">
-              <div class="listing-image">
-                <img
-                  src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85"
-                  alt="Room image"
-                />
-                <button class="favorite-button">♡</button>
-                <div class="image-indicators">
-                  <span class="indicator active"></span>
-                  <span class="indicator"></span>
-                  <span class="indicator"></span>
-                </div>
-              </div>
-              <div class="listing-content">
-                <h3>Luxury Room in Executive Home</h3>
-                <div class="listing-location">
-                  <span class="location-icon">📍</span>
-                  <span>Rockcliffe Park, Ottawa</span>
-                </div>
-                <div class="listing-details">
-                  <div>
-                    5 rooms · 2 residents · Executive home · Private bath
+            <a href="listing.html" class="listing-link">
+              <div class="listing-card" role="listitem">
+                <div class="listing-image">
+                  <img
+                    src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85"
+                    alt="Room image"
+                  />
+                  <button class="favorite-button">♡</button>
+                  <div class="image-indicators">
+                    <span class="indicator active"></span>
+                    <span class="indicator"></span>
+                    <span class="indicator"></span>
                   </div>
-                  <div>Small pets allowed</div>
                 </div>
-                <div class="listing-price">C$ 1,800</div>
+                <div class="listing-content">
+                  <h3>Luxury Room in Executive Home</h3>
+                  <div class="listing-location">
+                    <span class="location-icon">📍</span>
+                    <span>Rockcliffe Park, Ottawa</span>
+                  </div>
+                  <div class="listing-details">
+                    <div>
+                      5 rooms · 2 residents · Executive home · Private bath
+                    </div>
+                    <div>Small pets allowed</div>
+                  </div>
+                  <div class="listing-price">C$ 1,800</div>
+                </div>
               </div>
-            </div>
+            </a>
           </div>
         </div>
       </div>
@@ -724,6 +755,16 @@
       // Custom script to handle dropdowns without any conflicts
       document.addEventListener("DOMContentLoaded", function () {
         console.log("DOM Content loaded, setting up dropdown handlers");
+
+        // Handle favorite buttons to prevent card click
+        document.querySelectorAll(".favorite-button").forEach((button) => {
+          button.addEventListener("click", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            // Add your favorite functionality here
+            console.log("Favorite button clicked");
+          });
+        });
 
         // Handle filter dropdowns
         const filterPills = document.querySelectorAll(".filter-pill");
