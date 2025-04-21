@@ -216,16 +216,106 @@
                   />
                 </svg>
               </button>
-              <button class="filter-pill">
-                House type
-                <svg class="dropdown-icon" viewBox="0 0 20 20" fill="none">
-                  <path
-                    d="M5 7.5L10 12.5L15 7.5"
-                    stroke="#182D4C"
-                    stroke-width="1.5"
-                  />
-                </svg>
-              </button>
+
+              <!-- ZINDEX FIX FOR LEAFLET MAP OVERLAP -->
+              <div
+                style="position: relative; display: inline-block"
+                class="filter-pill-container"
+              >
+                <button class="filter-pill" id="house-type-btn">
+                  House type
+                  <svg class="dropdown-icon" viewBox="0 0 20 20" fill="none">
+                    <path
+                      d="M5 7.5L10 12.5L15 7.5"
+                      stroke="#182D4C"
+                      stroke-width="1.5"
+                    />
+                  </svg>
+                </button>
+                <div
+                  id="house-dropdown"
+                  style="
+                    display: none;
+                    position: absolute;
+                    left: 0;
+                    top: 40px;
+                    background: white;
+                    padding: 10px;
+                    border-radius: 10px;
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                    min-width: 200px;
+                    z-index: 100000 !important;
+                  "
+                >
+                  <!-- Ultra-high z-index -->
+                  <label
+                    style="display: block; margin-bottom: 10px; cursor: pointer"
+                  >
+                    <input type="checkbox" name="house-type" value="shared" />
+                    Shared Housing
+                  </label>
+                  <label style="display: block; cursor: pointer">
+                    <input type="checkbox" name="house-type" value="entire" />
+                    Entire Space
+                  </label>
+                </div>
+              </div>
+
+              <!-- ROOMS FILTER -->
+              <div
+                style="position: relative; display: inline-block"
+                class="filter-pill-container"
+              >
+                <button class="filter-pill" id="rooms-btn">
+                  Rooms
+                  <svg class="dropdown-icon" viewBox="0 0 20 20" fill="none">
+                    <path
+                      d="M5 7.5L10 12.5L15 7.5"
+                      stroke="#182D4C"
+                      stroke-width="1.5"
+                    />
+                  </svg>
+                </button>
+                <div
+                  id="rooms-dropdown"
+                  style="
+                    display: none;
+                    position: absolute;
+                    left: 0;
+                    top: 40px;
+                    background: white;
+                    padding: 10px;
+                    border-radius: 10px;
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                    min-width: 200px;
+                    z-index: 100000 !important;
+                  "
+                >
+                  <label
+                    style="display: block; margin-bottom: 10px; cursor: pointer"
+                  >
+                    <input type="checkbox" name="rooms" value="1" />
+                    1 Room
+                  </label>
+                  <label
+                    style="display: block; margin-bottom: 10px; cursor: pointer"
+                  >
+                    <input type="checkbox" name="rooms" value="2" />
+                    2 Rooms
+                  </label>
+                  <label
+                    style="display: block; margin-bottom: 10px; cursor: pointer"
+                  >
+                    <input type="checkbox" name="rooms" value="3" />
+                    3 Rooms
+                  </label>
+                  <label style="display: block; cursor: pointer">
+                    <input type="checkbox" name="rooms" value="4plus" />
+                    4+ Rooms
+                  </label>
+                </div>
+              </div>
+
               <button class="filter-pill">
                 Furnishing
                 <svg class="dropdown-icon" viewBox="0 0 20 20" fill="none">
@@ -282,7 +372,9 @@
                   <span>Etobicoke, Toronto</span>
                 </div>
                 <div class="listing-details">
-                  <div>4 residents · Room in a house · Shared bath</div>
+                  <div>
+                    2 rooms · 4 residents · Room in a house · Shared bath
+                  </div>
                   <div>Pets free</div>
                 </div>
                 <div class="listing-price">C$ 1,200</div>
@@ -310,7 +402,7 @@
                   <span>Downtown, Ottawa</span>
                 </div>
                 <div class="listing-details">
-                  <div>2 residents · Studio · Private bath</div>
+                  <div>1 room · 2 residents · Studio · Private bath</div>
                   <div>Pet friendly</div>
                 </div>
                 <div class="listing-price">C$ 1,450</div>
@@ -337,7 +429,7 @@
                   <span>Glebe, Ottawa</span>
                 </div>
                 <div class="listing-details">
-                  <div>3 residents · Heritage home · Shared bath</div>
+                  <div>3 rooms · 3 residents · Heritage home · Shared bath</div>
                   <div>No pets</div>
                 </div>
                 <div class="listing-price">C$ 950</div>
@@ -365,7 +457,7 @@
                   <span>Westboro, Ottawa</span>
                 </div>
                 <div class="listing-details">
-                  <div>2 residents · Apartment · Private bath</div>
+                  <div>2 rooms · 2 residents · Apartment · Private bath</div>
                   <div>Cat friendly</div>
                 </div>
                 <div class="listing-price">C$ 1,300</div>
@@ -392,7 +484,9 @@
                   <span>Sandy Hill, Ottawa</span>
                 </div>
                 <div class="listing-details">
-                  <div>4 residents · Student housing · Shared bath</div>
+                  <div>
+                    4 rooms · 4 residents · Student housing · Shared bath
+                  </div>
                   <div>No pets</div>
                 </div>
                 <div class="listing-price">C$ 850</div>
@@ -420,7 +514,9 @@
                   <span>Rockcliffe Park, Ottawa</span>
                 </div>
                 <div class="listing-details">
-                  <div>2 residents · Executive home · Private bath</div>
+                  <div>
+                    5 rooms · 2 residents · Executive home · Private bath
+                  </div>
                   <div>Small pets allowed</div>
                 </div>
                 <div class="listing-price">C$ 1,800</div>
@@ -467,5 +563,82 @@
       crossorigin=""
     ></script>
     <script src="search.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Get elements
+        var houseBtn = document.getElementById("house-type-btn");
+        var houseDropdown = document.getElementById("house-dropdown");
+        var roomsBtn = document.getElementById("rooms-btn");
+        var roomsDropdown = document.getElementById("rooms-dropdown");
+
+        // Function to handle dropdown toggle
+        function toggleDropdown(dropdown, display) {
+          if (display === undefined) {
+            display = dropdown.style.display === "block" ? "none" : "block";
+          }
+          dropdown.style.display = display;
+        }
+
+        // Function to handle click outside
+        function handleClickOutside(e, btn, dropdown) {
+          if (
+            dropdown.style.display === "block" &&
+            !dropdown.contains(e.target) &&
+            e.target !== btn &&
+            !btn.contains(e.target)
+          ) {
+            toggleDropdown(dropdown, "none");
+          }
+        }
+
+        if (houseBtn && houseDropdown) {
+          // Make sure dropdown has ultra-high z-index
+          houseDropdown.style.zIndex = "100000";
+
+          // Toggle dropdown on button click
+          houseBtn.addEventListener("click", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            toggleDropdown(houseDropdown);
+            // Close other dropdowns
+            if (roomsDropdown) toggleDropdown(roomsDropdown, "none");
+          });
+        }
+
+        if (roomsBtn && roomsDropdown) {
+          // Make sure dropdown has ultra-high z-index
+          roomsDropdown.style.zIndex = "100000";
+
+          // Toggle dropdown on button click
+          roomsBtn.addEventListener("click", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            toggleDropdown(roomsDropdown);
+            // Close other dropdowns
+            if (houseDropdown) toggleDropdown(houseDropdown, "none");
+          });
+        }
+
+        // Hide dropdowns when clicking outside
+        document.addEventListener("click", function (e) {
+          if (houseBtn && houseDropdown) {
+            handleClickOutside(e, houseBtn, houseDropdown);
+          }
+          if (roomsBtn && roomsDropdown) {
+            handleClickOutside(e, roomsBtn, roomsDropdown);
+          }
+        });
+
+        // FOR LEAFLET MAP ISSUE:
+        // Add CSS to ensure dropdown is above map
+        var style = document.createElement("style");
+        style.textContent =
+          "#house-dropdown, #rooms-dropdown { z-index: 100000 !important; }" +
+          ".leaflet-map-pane { z-index: 1 !important; }" +
+          ".leaflet-google-layer { z-index: 1 !important; }" +
+          ".leaflet-top, .leaflet-bottom { z-index: 1000 !important; }";
+        document.head.appendChild(style);
+      });
+    </script>
   </body>
 </html>

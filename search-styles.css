@@ -149,11 +149,97 @@
   font-size: 16px;
   color: var(--text-color);
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: all 0.2s ease;
+  position: relative;
+  z-index: 1;
 }
 
 .filter-pill:hover {
   background: #e8ecf2;
+}
+
+.filter-pill.active {
+  background: #e8ecf2;
+  z-index: 1000;
+}
+
+/* Added filter container styles */
+.filter-pill-container {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1);
+  min-width: 200px;
+  /* Initial state - hidden by default, will be controlled by JavaScript */
+  display: none;
+  z-index: 1000;
+}
+
+.dropdown-content {
+  padding: 12px;
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  border-radius: 8px;
+  margin-bottom: 4px;
+  user-select: none;
+}
+
+.checkbox-item:last-child {
+  margin-bottom: 0;
+}
+
+.checkbox-item:hover {
+  background: var(--light-gray);
+}
+
+.checkbox-item input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--border-color);
+  border-radius: 4px;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+  margin: 0;
+}
+
+.checkbox-item input[type="checkbox"]:checked {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.checkbox-item input[type="checkbox"]:checked::after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 2px;
+  width: 6px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.checkbox-label {
+  font-family: "NexaRegular", sans-serif;
+  font-size: 14px;
+  color: var(--text-color);
 }
 
 .filter-pill .dropdown-icon {
@@ -161,6 +247,11 @@
   height: 20px;
   stroke: var(--text-color);
   fill: none;
+  transition: transform 0.2s ease;
+}
+
+.filter-pill.active .dropdown-icon {
+  transform: rotate(180deg);
 }
 
 /* Main content area */
@@ -231,6 +322,13 @@
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.listing-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .listing-image {
@@ -531,4 +629,33 @@ header {
   font-size: 16px;
   letter-spacing: 2.56%;
   line-height: 1.6875;
+}
+
+/* View Listing Button */
+.view-listing-btn {
+  display: inline-block;
+  background-color: #ff385c;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  margin-top: 10px;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.view-listing-btn:hover {
+  background-color: #e31c5f;
+  text-decoration: none;
+}
+
+/* Make property cards clickable */
+.property-card {
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.property-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }

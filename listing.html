@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happipad - Room Details</title>
+    <link rel="stylesheet" href="listing-styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+      <div class="nav-content">
+        <div class="logo">happipad</div>
+        <div class="nav-controls">
+          <a href="#" class="nav-item"><i class="far fa-heart"></i> Saved</a>
+          <a href="#" class="nav-item"
+            ><i class="far fa-bell"></i> Notifications</a
+          >
+          <a href="#" class="nav-item"
+            ><i class="far fa-comment"></i> Messages</a
+          >
+          <a href="#" class="nav-item user"
+            ><img
+              src="https://images.unsplash.com/vector-1740737650825-1ce4f5377085?q=80&w=1480&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              alt="User"
+            />
+            John</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <!-- Back to Search -->
+    <div class="breadcrumb">
+      <a href="#" class="back-link"
+        ><i class="fas fa-arrow-left"></i> Back to search</a
+      >
+      <span>Room details</span>
+    </div>
+
+    <!-- Image Gallery -->
+    <div class="gallery-container">
+      <div class="main-image">
+        <img
+          src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?q=80&w=1560&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          alt="Property"
+        />
+      </div>
+      <div class="thumbnail-grid">
+        <img
+          src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?q=80&w=1560&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          alt="Thumbnail 1"
+        />
+        <img
+          src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?q=80&w=1560&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          alt="Thumbnail 2"
+        />
+        <img
+          src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?q=80&w=1560&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          alt="Thumbnail 3"
+        />
+        <img
+          src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?q=80&w=1560&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          alt="Thumbnail 4"
+        />
+      </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="main-content">
+        <!-- Property Navigation -->
+        <nav class="property-nav">
+          <a href="#description" class="active">Description</a>
+          <a href="#location">Location insights</a>
+          <a href="#reviews">Reviews</a>
+          <a href="#features">House features</a>
+          <a href="#furniture">Room furniture</a>
+          <a href="#rules">House rules</a>
+          <a href="#availability">Availability</a>
+          <a href="#host">Host</a>
+          <a href="#sharing">Sharing with</a>
+        </nav>
+
+        <!-- Property Details -->
+        <div class="property-details">
+          <h1>Room with shared bath and kitchen in Corktown, Toronto.</h1>
+          <div class="amenities">
+            <span><i class="fas fa-bath"></i> Shared full bath</span>
+            <span><i class="fas fa-home"></i> Detached house</span>
+            <span><i class="fas fa-door-closed"></i> Private Room</span>
+          </div>
+          <p class="description">
+            With a king-size bed, separate seating area, larger work desk, and a
+            55-inch flat-screen TV, these rooms are perfect for those who want
+            to unwind in style. The en-suite bathroom boasts a are perfect for
+            thosmk...
+          </p>
+        </div>
+
+        <!-- Happi Cover -->
+        <div class="happi-cover">
+          <h3>happicover</h3>
+          <p>
+            Every booking includes protection from accidents, cancellations, and
+            other issues during renting.
+          </p>
+        </div>
+
+        <!-- Location -->
+        <div class="location">
+          <h3>Toronto, Keel st. and Lakeshore blv.</h3>
+          <p class="location-note">Exact location is provided after booking</p>
+          <div class="map" id="map">
+            <!-- Map will be initialized here -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Booking Sidebar -->
+      <div class="booking-sidebar">
+        <div class="price-details">
+          <h2>C$ 1500<span>/month</span></h2>
+          <p class="deposit">C$ 800 deposit</p>
+          <p class="utilities">
+            <i class="fas fa-check"></i> Utilities included
+          </p>
+        </div>
+
+        <div class="booking-dates">
+          <h3>Dates</h3>
+          <div class="date-inputs">
+            <div class="date-field">
+              <label>Move in</label>
+              <input type="date" />
+            </div>
+            <div class="date-field">
+              <label>Move out</label>
+              <input type="date" />
+            </div>
+          </div>
+        </div>
+
+        <!-- New Co-applicants Section -->
+        <div class="co-applicants-section">
+          <h3>Who's Moving In? <span class="optional-tag">Optional</span></h3>
+          <p class="co-applicants-info">Add friends you want to live with</p>
+
+          <div class="co-applicants-list">
+            <!-- Primary Applicant (You) -->
+            <div class="applicant primary">
+              <img
+                src="https://images.unsplash.com/vector-1740737650825-1ce4f5377085?q=80&w=1480&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="Your profile"
+              />
+              <div class="applicant-info">
+                <span class="applicant-name">You (Primary)</span>
+                <span class="applicant-status">Ready to apply</span>
+              </div>
+            </div>
+
+            <!-- Co-applicant slots -->
+            <div class="co-applicant-slots">
+              <button class="add-applicant">
+                <i class="fas fa-plus"></i>
+                <span>Add Co-applicant</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="message-host">
+          <h3>Message to Landlord</h3>
+          <textarea
+            placeholder="Hello John, I hope you're doing well! I'm interested in your property. Let me know if it's still available."
+          ></textarea>
+        </div>
+
+        <button class="check-availability">Check availability</button>
+
+        <div class="booking-steps">
+          <div class="step">
+            <span class="step-number">1</span>
+            <div class="step-details">
+              <h4>Pick a place & add co-applicants</h4>
+              <p>No payment required</p>
+            </div>
+          </div>
+          <div class="step">
+            <span class="step-number">2</span>
+            <div class="step-details">
+              <h4>Everyone confirms & pays deposit</h4>
+              <p>C$ 800 deposit per person</p>
+            </div>
+          </div>
+          <div class="step">
+            <span class="step-number">3</span>
+            <div class="step-details">
+              <h4>Move in and pay rent</h4>
+              <p>C$ 1500 rent total</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
