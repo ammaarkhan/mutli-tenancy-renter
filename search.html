@@ -439,12 +439,30 @@
                 </svg>
               </button>
 
+              <!-- Add Rental Type Filter -->
+              <div class="filter-pill-container">
+                <button
+                  class="filter-pill"
+                  id="rental-type-btn"
+                  data-dropdown="rental-dropdown-portal"
+                >
+                  Rental type
+                  <svg class="dropdown-icon" viewBox="0 0 20 20" fill="none">
+                    <path
+                      d="M5 7.5L10 12.5L15 7.5"
+                      stroke="#182D4C"
+                      stroke-width="1.5"
+                    />
+                  </svg>
+                </button>
+              </div>
+
               <!-- HOUSE TYPE FILTER -->
               <div class="filter-pill-container">
                 <button
                   class="filter-pill"
                   id="house-type-btn"
-                  data-dropdown="house-dropdown"
+                  data-dropdown="house-dropdown-portal"
                 >
                   House type
                   <svg class="dropdown-icon" viewBox="0 0 20 20" fill="none">
@@ -751,8 +769,27 @@
       </label>
     </div>
 
+    <!-- Add dropdown portal for rental type at the end of body -->
+    <div id="rental-dropdown-portal" class="filter-dropdown-portal">
+      <label>
+        <input type="checkbox" name="rental-type" value="shared-house" />
+        Room in shared house
+      </label>
+      <label>
+        <input type="checkbox" name="rental-type" value="separate-unit" />
+        Separate unit
+      </label>
+      <label>
+        <input type="checkbox" name="rental-type" value="shared-room" />
+        Bed in a shared room
+      </label>
+      <label>
+        <input type="checkbox" name="rental-type" value="entire-space" />
+        Entire space
+      </label>
+    </div>
+
     <script>
-      // Custom script to handle dropdowns without any conflicts
       document.addEventListener("DOMContentLoaded", function () {
         console.log("DOM Content loaded, setting up dropdown handlers");
 
@@ -761,7 +798,6 @@
           button.addEventListener("click", function (e) {
             e.preventDefault();
             e.stopPropagation();
-            // Add your favorite functionality here
             console.log("Favorite button clicked");
           });
         });
@@ -769,16 +805,57 @@
         // Handle filter dropdowns
         const filterPills = document.querySelectorAll(".filter-pill");
 
-        // Special fix for House type and Rooms filters using portals
+        // Special fix for House type, Rooms, and Rental type filters using portals
         const houseBtn = document.getElementById("house-type-btn");
         const roomsBtn = document.getElementById("rooms-btn");
+        const rentalBtn = document.getElementById("rental-type-btn");
         const housePortal = document.getElementById("house-dropdown-portal");
         const roomsPortal = document.getElementById("rooms-dropdown-portal");
+        const rentalPortal = document.getElementById("rental-dropdown-portal");
 
+        // Rental type dropdown handler
+        if (rentalBtn && rentalPortal) {
+          console.log("Setting up portal handler for rental-type dropdown");
+          rentalBtn.addEventListener("click", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            // Hide all dropdowns and portals
+            document
+              .querySelectorAll(".dropdown-menu, .filter-dropdown-portal")
+              .forEach((menu) => {
+                menu.style.display = "none";
+              });
+
+            // Calculate position relative to viewport
+            const pillRect = this.getBoundingClientRect();
+
+            // Position portal relative to the button in the viewport
+            rentalPortal.style.top = pillRect.bottom + 4 + "px";
+
+            // Ensure portal stays within viewport width
+            if (pillRect.left + 200 > window.innerWidth) {
+              rentalPortal.style.right =
+                window.innerWidth - pillRect.right + "px";
+              rentalPortal.style.left = "auto";
+            } else {
+              rentalPortal.style.left = pillRect.left + "px";
+              rentalPortal.style.right = "auto";
+            }
+
+            // Show the portal
+            rentalPortal.style.display = "block";
+            console.log(
+              "Rental type portal displayed at",
+              rentalPortal.style.top,
+              rentalPortal.style.left
+            );
+          });
+        }
+
+        // House type dropdown handler
         if (houseBtn && housePortal) {
           console.log("Setting up portal handler for house-type dropdown");
-
-          // House type button click handler
           houseBtn.addEventListener("click", function (e) {
             e.preventDefault();
             e.stopPropagation();
@@ -816,10 +893,9 @@
           });
         }
 
+        // Rooms dropdown handler
         if (roomsBtn && roomsPortal) {
           console.log("Setting up portal handler for rooms dropdown");
-
-          // Rooms button click handler
           roomsBtn.addEventListener("click", function (e) {
             e.preventDefault();
             e.stopPropagation();

@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
       price: "C$ 1,200",
       rooms: 1,
       type: "shared",
+      rentalType: "shared-house",
     },
     {
       id: "2",
@@ -27,6 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
       price: "C$ 1,200",
       rooms: 2,
       type: "entire",
+      rentalType: "separate-unit",
     },
     {
       id: "3",
@@ -35,10 +37,15 @@ document.addEventListener("DOMContentLoaded", () => {
       price: "C$ 1,300",
       rooms: 3,
       type: "shared",
+      rentalType: "shared-room",
     },
   ];
 
   // Filter functionality
+  const rentalTypeFilterContainer = document.getElementById(
+    "rental-dropdown-portal"
+  );
+  const rentalTypeFilterButton = document.getElementById("rental-type-btn");
   const houseTypeFilterContainer = document.getElementById(
     "house-type-filter-container"
   );
@@ -50,11 +57,19 @@ document.addEventListener("DOMContentLoaded", () => {
   );
   const roomsFilterButton = document.getElementById("rooms-filter-button");
 
+  let selectedRentalTypes = [];
   let selectedHouseTypes = [];
   let selectedRooms = [];
 
   function filterProperties() {
     let filteredProperties = properties;
+
+    // Apply rental type filter
+    if (selectedRentalTypes.length > 0) {
+      filteredProperties = filteredProperties.filter((property) =>
+        selectedRentalTypes.includes(property.rentalType)
+      );
+    }
 
     // Apply house type filter
     if (selectedHouseTypes.length > 0) {
@@ -82,6 +97,25 @@ document.addEventListener("DOMContentLoaded", () => {
     if (listingsCount) {
       listingsCount.textContent = `Showing ${filteredProperties.length} rooms`;
     }
+  }
+
+  if (rentalTypeFilterContainer) {
+    // Initialize checkbox event listeners for rental type
+    const rentalTypeCheckboxes = rentalTypeFilterContainer.querySelectorAll(
+      'input[type="checkbox"]'
+    );
+    rentalTypeCheckboxes.forEach((checkbox) => {
+      checkbox.addEventListener("click", (e) => {
+        e.stopPropagation();
+      });
+
+      checkbox.addEventListener("change", () => {
+        selectedRentalTypes = Array.from(rentalTypeCheckboxes)
+          .filter((cb) => cb.checked)
+          .map((cb) => cb.value);
+        filterProperties();
+      });
+    });
   }
 
   if (houseTypeFilterContainer) {
@@ -195,6 +229,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (roomsDropdown) {
     const checkboxes = roomsDropdown.querySelectorAll('input[type="checkbox"]');
+    checkboxes.forEach((checkbox) => {
+      checkbox.addEventListener("click", (e) => {
+        e.stopPropagation();
+      });
+    });
+  }
+
+  // Special handling for rental type dropdown
+  const rentalBtn = document.getElementById("rental-type-btn");
+  const rentalDropdown = document.getElementById("rental-dropdown-portal");
+
+  if (rentalDropdown) {
+    const checkboxes = rentalDropdown.querySelectorAll(
+      'input[type="checkbox"]'
+    );
     checkboxes.forEach((checkbox) => {
       checkbox.addEventListener("click", (e) => {
         e.stopPropagation();
