@@ -9,6 +9,259 @@
     <title>Happipad - Room Search</title>
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="search-styles.css" />
+    <style>
+      /* CRITICAL OVERRIDES FOR MOBILE */
+      .notification-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: var(--notification-height);
+        z-index: 1000;
+      }
+
+      header {
+        position: fixed;
+        top: var(--notification-height);
+        left: 0;
+        right: 0;
+        z-index: 999;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      body,
+      html {
+        padding: 0;
+        margin: 0;
+        overflow-x: hidden;
+      }
+
+      /* REDUCED PADDING: Fix for the excessive space at the top on mobile */
+      .search-container {
+        margin-top: calc(var(--header-height) + var(--notification-height));
+        width: 100%;
+        display: block;
+        padding: 0;
+      }
+
+      #search-top-area {
+        background: white;
+        padding: 10px 16px;
+        position: relative;
+        top: 0;
+        width: 100%;
+        box-sizing: border-box;
+        z-index: 10;
+      }
+
+      .search-filters-form {
+        max-width: 1200px;
+        margin: 0 auto;
+        width: 100%;
+      }
+
+      /* Improved filter pills scrollable container */
+      .filters-row {
+        margin-top: 16px;
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 4px;
+        position: relative;
+      }
+
+      .filter-pills {
+        display: flex;
+        gap: 8px;
+        flex-wrap: nowrap;
+        padding: 4px 0;
+        position: relative;
+      }
+
+      /* Fix dropdown positioning */
+      .filter-pill-container {
+        position: relative;
+        display: inline-block;
+      }
+
+      /* NEW STYLES: Position dropdowns as fixed to escape scrollable container */
+      .filter-dropdown-portal {
+        position: fixed;
+        background: white;
+        padding: 16px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        z-index: 10000;
+        width: 200px;
+        display: none;
+      }
+
+      /* Style for labels in dropdowns to appear on separate lines */
+      .filter-dropdown-portal label {
+        display: block;
+        margin-bottom: 12px;
+        font-size: 14px;
+        color: var(--text-color);
+        cursor: pointer;
+      }
+
+      /* Last label shouldn't have margin */
+      .filter-dropdown-portal label:last-child {
+        margin-bottom: 0;
+      }
+
+      /* Style for checkboxes */
+      .filter-dropdown-portal input[type="checkbox"] {
+        margin-right: 8px;
+        vertical-align: middle;
+      }
+
+      /* Ensure the dropdowns are visible with higher z-index */
+      .dropdown-menu {
+        position: absolute;
+        left: 0;
+        top: 100%;
+        margin-top: 4px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        z-index: 9999;
+        width: 200px;
+        padding: 12px;
+        display: none;
+      }
+
+      /* Desktop specific styles */
+      @media screen and (min-width: 769px) {
+        .search-filters-form {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          gap: 16px;
+          align-items: flex-end;
+        }
+
+        .search-field.location {
+          flex: 2;
+          min-width: 250px;
+        }
+
+        .dates-container {
+          display: flex;
+          flex-direction: row;
+          gap: 16px;
+          flex: 2;
+          min-width: 300px;
+        }
+
+        .search-button {
+          align-self: flex-end;
+          height: 44px;
+          margin-top: 24px;
+          padding: 0 24px;
+        }
+
+        .filter-pills {
+          flex-wrap: wrap;
+        }
+
+        #search-results-area {
+          padding: 24px;
+        }
+      }
+
+      /* Mobile specific styles */
+      @media screen and (max-width: 768px) {
+        :root {
+          --header-height: 56px; /* Reduce header height on mobile */
+          --notification-height: 32px; /* Reduce notification height on mobile */
+        }
+
+        header {
+          padding: 8px 16px; /* Reduce header padding */
+        }
+
+        .search-container {
+          margin-top: calc(
+            var(--header-height) + var(--notification-height) - 8px
+          ); /* Reduce top margin */
+        }
+
+        #search-top-area {
+          padding: 8px 12px; /* Reduce search area padding */
+        }
+
+        .search-filters-form {
+          gap: 8px; /* Reduce gap between form elements */
+        }
+
+        .search-field {
+          margin-bottom: 8px; /* Reduce margin below search fields */
+        }
+
+        .dates-container {
+          gap: 8px; /* Reduce gap between date fields */
+        }
+
+        /* Make search button more compact */
+        .search-button {
+          margin-top: 4px;
+          height: 40px;
+        }
+
+        /* Reduce filter row margin */
+        .filters-row {
+          margin-top: 8px;
+        }
+
+        /* Improved dropdown visibility for mobile */
+        .filter-pill-container {
+          position: relative;
+          display: inline-block;
+        }
+
+        .dropdown-menu {
+          position: absolute;
+          left: 0;
+          top: 100%;
+          margin-top: 4px;
+          width: 200px;
+          background: white;
+          border-radius: 8px;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+          z-index: 9999;
+        }
+
+        /* Make sure filters are scrollable */
+        .filters-row {
+          overflow-x: auto;
+          width: 100%;
+          -webkit-overflow-scrolling: touch;
+        }
+
+        .filter-pills {
+          display: flex;
+          white-space: nowrap;
+          gap: 8px;
+          padding: 4px 0;
+        }
+
+        .filter-pill {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          padding: 8px 16px;
+          border: 1px solid #e2e8f0;
+          border-radius: 100px;
+          background: white;
+          font-size: 14px;
+          cursor: pointer;
+          white-space: nowrap;
+          -webkit-tap-highlight-color: transparent; /* Fix for mobile tap highlight */
+        }
+      }
+    </style>
   </head>
   <body>
     <div class="notification-bar">
@@ -71,99 +324,61 @@
     </header>
 
     <main class="search-container">
-      <!-- Search filters section -->
-      <div class="search-filters-container">
-        <div class="search-filters">
-          <div class="search-row">
-            <div class="search-field location">
-              <label>Location</label>
+      <!-- SEARCH AREA -->
+      <div id="search-top-area">
+        <form class="search-filters-form">
+          <div class="search-field location">
+            <label for="location-input">Location</label>
+            <input
+              type="text"
+              id="location-input"
+              value="Ottawa, ON"
+              placeholder="Enter location"
+            />
+          </div>
+
+          <div class="dates-container">
+            <div class="search-field date-from">
+              <label for="date-from-input">Date from</label>
               <input
-                type="text"
-                value="Ottawa, ON"
-                placeholder="Enter location"
+                type="date"
+                id="date-from-input"
+                value="2025-01-18"
+                placeholder="Select date"
               />
             </div>
 
-            <div class="dates-container">
-              <div class="search-field date-from">
-                <label>Date from</label>
-                <input
-                  type="text"
-                  value="Wed, Jan 18, 2025"
-                  placeholder="Select date"
-                />
-              </div>
-
-              <div class="search-field date-to">
-                <label>Date to</label>
-                <input
-                  type="text"
-                  value="Wed, Jan 18, 2025"
-                  placeholder="Select date"
-                />
-              </div>
+            <div class="search-field date-to">
+              <label for="date-to-input">Date to</label>
+              <input
+                type="date"
+                id="date-to-input"
+                value="2025-01-18"
+                placeholder="Select date"
+              />
             </div>
-
-            <button type="button" class="search-button">
-              <svg class="search-icon" viewBox="0 0 20 20" fill="none">
-                <path
-                  d="M9.58366 17.5C13.9559 17.5 17.5003 13.9555 17.5003 9.58333C17.5003 5.21116 13.9559 1.66666 9.58366 1.66666C5.21149 1.66666 1.66699 5.21116 1.66699 9.58333C1.66699 13.9555 5.21149 17.5 9.58366 17.5Z"
-                  stroke="white"
-                  stroke-width="1.5"
-                />
-                <path
-                  d="M18.3337 18.3333L16.667 16.6667"
-                  stroke="white"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                />
-              </svg>
-            </button>
           </div>
 
-          <div class="filters-row">
-            <button class="filter-toggle">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                <path
-                  d="M18.3333 5.83333H13.3333"
-                  stroke="#182D4C"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                />
-                <path
-                  d="M6.66667 5.83333H1.66667"
-                  stroke="#182D4C"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                />
-                <path
-                  d="M13.3333 14.1667H18.3333"
-                  stroke="#182D4C"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                />
-                <path
-                  d="M6.66667 14.1667H1.66667"
-                  stroke="#182D4C"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                />
-                <path
-                  d="M10 8.33333C11.3807 8.33333 12.5 7.21404 12.5 5.83333C12.5 4.45262 11.3807 3.33333 10 3.33333C8.61929 3.33333 7.5 4.45262 7.5 5.83333C7.5 7.21404 8.61929 8.33333 10 8.33333Z"
-                  stroke="#182D4C"
-                  stroke-width="1.5"
-                />
-                <path
-                  d="M10 16.6667C11.3807 16.6667 12.5 15.5474 12.5 14.1667C12.5 12.786 11.3807 11.6667 10 11.6667C8.61929 11.6667 7.5 12.786 7.5 14.1667C7.5 15.5474 8.61929 16.6667 10 16.6667Z"
-                  stroke="#182D4C"
-                  stroke-width="1.5"
-                />
-              </svg>
-              All filters
-            </button>
+          <button type="button" class="search-button" aria-label="Search">
+            <svg class="search-icon" viewBox="0 0 20 20" fill="none">
+              <path
+                d="M9.58366 17.5C13.9559 17.5 17.5003 13.9555 17.5003 9.58333C17.5003 5.21116 13.9559 1.66666 9.58366 1.66666C5.21149 1.66666 1.66699 5.21116 1.66699 9.58333C1.66699 13.9555 5.21149 17.5 9.58366 17.5Z"
+                stroke="white"
+                stroke-width="1.5"
+              />
+              <path
+                d="M18.3337 18.3333L16.667 16.6667"
+                stroke="white"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              />
+            </svg>
+            Search
+          </button>
 
-            <div class="filter-pills">
-              <button class="filter-pill">
+          <div class="filters-row">
+            <div class="filter-pills" role="group" aria-label="Search filters">
+              <button class="filter-pill" data-dropdown="price-dropdown">
                 Price
                 <svg class="dropdown-icon" viewBox="0 0 20 20" fill="none">
                   <path
@@ -173,7 +388,8 @@
                   />
                 </svg>
               </button>
-              <button class="filter-pill">
+
+              <button class="filter-pill" data-dropdown="bathroom-dropdown">
                 Bathroom
                 <svg class="dropdown-icon" viewBox="0 0 20 20" fill="none">
                   <path
@@ -183,7 +399,8 @@
                   />
                 </svg>
               </button>
-              <button class="filter-pill">
+
+              <button class="filter-pill" data-dropdown="gender-dropdown">
                 Host gender
                 <svg class="dropdown-icon" viewBox="0 0 20 20" fill="none">
                   <path
@@ -193,7 +410,8 @@
                   />
                 </svg>
               </button>
-              <button class="filter-pill">
+
+              <button class="filter-pill" data-dropdown="pets-dropdown">
                 Pets
                 <svg class="dropdown-icon" viewBox="0 0 20 20" fill="none">
                   <path
@@ -203,23 +421,14 @@
                   />
                 </svg>
               </button>
-              <button class="filter-pill">
-                Residents
-                <svg class="dropdown-icon" viewBox="0 0 20 20" fill="none">
-                  <path
-                    d="M5 7.5L10 12.5L15 7.5"
-                    stroke="#182D4C"
-                    stroke-width="1.5"
-                  />
-                </svg>
-              </button>
 
-              <!-- ZINDEX FIX FOR LEAFLET MAP OVERLAP -->
-              <div
-                style="position: relative; display: inline-block"
-                class="filter-pill-container"
-              >
-                <button class="filter-pill" id="house-type-btn">
+              <!-- HOUSE TYPE FILTER -->
+              <div class="filter-pill-container">
+                <button
+                  class="filter-pill"
+                  id="house-type-btn"
+                  data-dropdown="house-dropdown"
+                >
                   House type
                   <svg class="dropdown-icon" viewBox="0 0 20 20" fill="none">
                     <path
@@ -229,41 +438,15 @@
                     />
                   </svg>
                 </button>
-                <div
-                  id="house-dropdown"
-                  style="
-                    display: none;
-                    position: absolute;
-                    left: 0;
-                    top: 40px;
-                    background: white;
-                    padding: 10px;
-                    border-radius: 10px;
-                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-                    min-width: 200px;
-                    z-index: 100000 !important;
-                  "
-                >
-                  <!-- Ultra-high z-index -->
-                  <label
-                    style="display: block; margin-bottom: 10px; cursor: pointer"
-                  >
-                    <input type="checkbox" name="house-type" value="shared" />
-                    Shared Housing
-                  </label>
-                  <label style="display: block; cursor: pointer">
-                    <input type="checkbox" name="house-type" value="entire" />
-                    Entire Space
-                  </label>
-                </div>
               </div>
 
               <!-- ROOMS FILTER -->
-              <div
-                style="position: relative; display: inline-block"
-                class="filter-pill-container"
-              >
-                <button class="filter-pill" id="rooms-btn">
+              <div class="filter-pill-container">
+                <button
+                  class="filter-pill"
+                  id="rooms-btn"
+                  data-dropdown="rooms-dropdown"
+                >
                   Rooms
                   <svg class="dropdown-icon" viewBox="0 0 20 20" fill="none">
                     <path
@@ -273,47 +456,9 @@
                     />
                   </svg>
                 </button>
-                <div
-                  id="rooms-dropdown"
-                  style="
-                    display: none;
-                    position: absolute;
-                    left: 0;
-                    top: 40px;
-                    background: white;
-                    padding: 10px;
-                    border-radius: 10px;
-                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-                    min-width: 200px;
-                    z-index: 100000 !important;
-                  "
-                >
-                  <label
-                    style="display: block; margin-bottom: 10px; cursor: pointer"
-                  >
-                    <input type="checkbox" name="rooms" value="1" />
-                    1 Room
-                  </label>
-                  <label
-                    style="display: block; margin-bottom: 10px; cursor: pointer"
-                  >
-                    <input type="checkbox" name="rooms" value="2" />
-                    2 Rooms
-                  </label>
-                  <label
-                    style="display: block; margin-bottom: 10px; cursor: pointer"
-                  >
-                    <input type="checkbox" name="rooms" value="3" />
-                    3 Rooms
-                  </label>
-                  <label style="display: block; cursor: pointer">
-                    <input type="checkbox" name="rooms" value="4plus" />
-                    4+ Rooms
-                  </label>
-                </div>
               </div>
 
-              <button class="filter-pill">
+              <button class="filter-pill" data-dropdown="furnishing-dropdown">
                 Furnishing
                 <svg class="dropdown-icon" viewBox="0 0 20 20" fill="none">
                   <path
@@ -325,11 +470,11 @@
               </button>
             </div>
           </div>
-        </div>
+        </form>
       </div>
 
       <!-- Main content area -->
-      <div class="search-content">
+      <div id="search-results-area">
         <!-- Listings section -->
         <div class="listings-container">
           <div class="listings-header">
@@ -337,16 +482,16 @@
             <div class="listings-count">Showing 255 rooms</div>
 
             <div class="sort-container">
-              <button class="sort-button">
+              <button class="sort-button" aria-label="Sort listings">
                 <span class="sort-icon">↕</span>
                 Sort by
               </button>
             </div>
           </div>
 
-          <div class="listings-grid">
+          <div class="listings-grid" role="list">
             <!-- Listing 1 -->
-            <div class="listing-card">
+            <div class="listing-card" role="listitem">
               <div class="listing-image">
                 <img
                   src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af"
@@ -379,7 +524,7 @@
             </div>
 
             <!-- Listing 2 -->
-            <div class="listing-card">
+            <div class="listing-card" role="listitem">
               <div class="listing-image">
                 <img
                   src="https://images.unsplash.com/photo-1598928506311-c55ded91a20c"
@@ -407,7 +552,7 @@
             </div>
 
             <!-- Listing 3 -->
-            <div class="listing-card">
+            <div class="listing-card" role="listitem">
               <div class="listing-image">
                 <img
                   src="https://images.unsplash.com/photo-1484101403633-562f891dc89a"
@@ -434,7 +579,7 @@
             </div>
 
             <!-- Listing 4 -->
-            <div class="listing-card">
+            <div class="listing-card" role="listitem">
               <div class="listing-image">
                 <img
                   src="https://images.unsplash.com/photo-1486304873000-235643847519"
@@ -462,7 +607,7 @@
             </div>
 
             <!-- Listing 5 -->
-            <div class="listing-card">
+            <div class="listing-card" role="listitem">
               <div class="listing-image">
                 <img
                   src="https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6"
@@ -491,7 +636,7 @@
             </div>
 
             <!-- Listing 6 -->
-            <div class="listing-card">
+            <div class="listing-card" role="listitem">
               <div class="listing-image">
                 <img
                   src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85"
@@ -544,72 +689,170 @@
       </div>
     </footer>
 
-    <script src="search.js"></script>
+    <!-- Add dropdown portals to the end of the body to ensure they're rendered above all content -->
+    <div id="house-dropdown-portal" class="filter-dropdown-portal">
+      <label>
+        <input type="checkbox" name="house-type" value="shared" />
+        Shared Housing
+      </label>
+      <label>
+        <input type="checkbox" name="house-type" value="entire" />
+        Entire Space
+      </label>
+    </div>
+
+    <div id="rooms-dropdown-portal" class="filter-dropdown-portal">
+      <label>
+        <input type="checkbox" name="rooms" value="1" />
+        1 Room
+      </label>
+      <label>
+        <input type="checkbox" name="rooms" value="2" />
+        2 Rooms
+      </label>
+      <label>
+        <input type="checkbox" name="rooms" value="3" />
+        3 Rooms
+      </label>
+      <label>
+        <input type="checkbox" name="rooms" value="4plus" />
+        4+ Rooms
+      </label>
+    </div>
+
     <script>
+      // Custom script to handle dropdowns without any conflicts
       document.addEventListener("DOMContentLoaded", function () {
-        // Get elements
-        var houseBtn = document.getElementById("house-type-btn");
-        var houseDropdown = document.getElementById("house-dropdown");
-        var roomsBtn = document.getElementById("rooms-btn");
-        var roomsDropdown = document.getElementById("rooms-dropdown");
+        console.log("DOM Content loaded, setting up dropdown handlers");
 
-        // Function to handle dropdown toggle
-        function toggleDropdown(dropdown, display) {
-          if (display === undefined) {
-            display = dropdown.style.display === "block" ? "none" : "block";
-          }
-          dropdown.style.display = display;
-        }
+        // Handle filter dropdowns
+        const filterPills = document.querySelectorAll(".filter-pill");
 
-        // Function to handle click outside
-        function handleClickOutside(e, btn, dropdown) {
-          if (
-            dropdown.style.display === "block" &&
-            !dropdown.contains(e.target) &&
-            e.target !== btn &&
-            !btn.contains(e.target)
-          ) {
-            toggleDropdown(dropdown, "none");
-          }
-        }
+        // Special fix for House type and Rooms filters using portals
+        const houseBtn = document.getElementById("house-type-btn");
+        const roomsBtn = document.getElementById("rooms-btn");
+        const housePortal = document.getElementById("house-dropdown-portal");
+        const roomsPortal = document.getElementById("rooms-dropdown-portal");
 
-        if (houseBtn && houseDropdown) {
-          // Make sure dropdown has ultra-high z-index
-          houseDropdown.style.zIndex = "100000";
+        if (houseBtn && housePortal) {
+          console.log("Setting up portal handler for house-type dropdown");
 
-          // Toggle dropdown on button click
+          // House type button click handler
           houseBtn.addEventListener("click", function (e) {
             e.preventDefault();
             e.stopPropagation();
-            toggleDropdown(houseDropdown);
-            // Close other dropdowns
-            if (roomsDropdown) toggleDropdown(roomsDropdown, "none");
+
+            // Hide all dropdowns and portals
+            document
+              .querySelectorAll(".dropdown-menu, .filter-dropdown-portal")
+              .forEach((menu) => {
+                menu.style.display = "none";
+              });
+
+            // Calculate position relative to viewport
+            const pillRect = this.getBoundingClientRect();
+
+            // Position portal relative to the button in the viewport
+            housePortal.style.top = pillRect.bottom + 4 + "px";
+
+            // Ensure portal stays within viewport width
+            if (pillRect.left + 200 > window.innerWidth) {
+              housePortal.style.right =
+                window.innerWidth - pillRect.right + "px";
+              housePortal.style.left = "auto";
+            } else {
+              housePortal.style.left = pillRect.left + "px";
+              housePortal.style.right = "auto";
+            }
+
+            // Show the portal
+            housePortal.style.display = "block";
+            console.log(
+              "House type portal displayed at",
+              housePortal.style.top,
+              housePortal.style.left
+            );
           });
         }
 
-        if (roomsBtn && roomsDropdown) {
-          // Make sure dropdown has ultra-high z-index
-          roomsDropdown.style.zIndex = "100000";
+        if (roomsBtn && roomsPortal) {
+          console.log("Setting up portal handler for rooms dropdown");
 
-          // Toggle dropdown on button click
+          // Rooms button click handler
           roomsBtn.addEventListener("click", function (e) {
             e.preventDefault();
             e.stopPropagation();
-            toggleDropdown(roomsDropdown);
-            // Close other dropdowns
-            if (houseDropdown) toggleDropdown(houseDropdown, "none");
+
+            // Hide all dropdowns and portals
+            document
+              .querySelectorAll(".dropdown-menu, .filter-dropdown-portal")
+              .forEach((menu) => {
+                menu.style.display = "none";
+              });
+
+            // Calculate position relative to viewport
+            const pillRect = this.getBoundingClientRect();
+
+            // Position portal relative to the button in the viewport
+            roomsPortal.style.top = pillRect.bottom + 4 + "px";
+
+            // Ensure portal stays within viewport width
+            if (pillRect.left + 200 > window.innerWidth) {
+              roomsPortal.style.right =
+                window.innerWidth - pillRect.right + "px";
+              roomsPortal.style.left = "auto";
+            } else {
+              roomsPortal.style.left = pillRect.left + "px";
+              roomsPortal.style.right = "auto";
+            }
+
+            // Show the portal
+            roomsPortal.style.display = "block";
+            console.log(
+              "Rooms portal displayed at",
+              roomsPortal.style.top,
+              roomsPortal.style.left
+            );
           });
         }
 
-        // Hide dropdowns when clicking outside
+        // Close portals when clicking outside
         document.addEventListener("click", function (e) {
-          if (houseBtn && houseDropdown) {
-            handleClickOutside(e, houseBtn, houseDropdown);
-          }
-          if (roomsBtn && roomsDropdown) {
-            handleClickOutside(e, roomsBtn, roomsDropdown);
+          if (
+            !e.target.closest(".filter-pill") &&
+            !e.target.closest(".filter-dropdown-portal")
+          ) {
+            document
+              .querySelectorAll(".filter-dropdown-portal")
+              .forEach((portal) => {
+                portal.style.display = "none";
+              });
           }
         });
+
+        // Also handle touchstart for mobile
+        document.addEventListener("touchstart", function (e) {
+          if (
+            !e.target.closest(".filter-pill") &&
+            !e.target.closest(".filter-dropdown-portal")
+          ) {
+            document
+              .querySelectorAll(".filter-dropdown-portal")
+              .forEach((portal) => {
+                portal.style.display = "none";
+              });
+          }
+        });
+
+        // Make checkboxes in portals work properly
+        document
+          .querySelectorAll('.filter-dropdown-portal input[type="checkbox"]')
+          .forEach((checkbox) => {
+            checkbox.addEventListener("click", function (e) {
+              e.stopPropagation();
+              console.log(`Portal checkbox clicked: ${this.value}`);
+            });
+          });
       });
     </script>
   </body>

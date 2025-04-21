@@ -141,90 +141,76 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Mobile detection utility
-  const isMobile = () => window.innerWidth <= 768;
+  // Handle filter dropdown toggles
+  const filterPillButtons = document.querySelectorAll(".filter-pill");
 
-  // Handle filter pills scrolling
-  const filterPills = document.querySelector(".filter-pills");
-  let isScrolling = false;
+  filterPillButtons.forEach((button) => {
+    button.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
 
-  if (filterPills) {
-    filterPills.addEventListener("scroll", () => {
-      if (!isScrolling) {
-        isScrolling = true;
-        requestAnimationFrame(() => {
-          // Add shadow indicators based on scroll position
-          const showLeftShadow = filterPills.scrollLeft > 0;
-          const showRightShadow =
-            filterPills.scrollLeft <
-            filterPills.scrollWidth - filterPills.clientWidth;
+      const dropdownId = button.getAttribute("data-dropdown");
 
-          filterPills.classList.toggle("shadow-left", showLeftShadow);
-          filterPills.classList.toggle("shadow-right", showRightShadow);
+      if (dropdownId) {
+        const dropdown = document.getElementById(dropdownId);
 
-          isScrolling = false;
-        });
+        if (dropdown) {
+          // Close all other dropdowns first
+          document.querySelectorAll(".dropdown-menu").forEach((menu) => {
+            if (menu.id !== dropdownId) {
+              menu.style.display = "none";
+            }
+          });
+
+          // Toggle this dropdown
+          dropdown.style.display =
+            dropdown.style.display === "block" ? "none" : "block";
+
+          // Ensure dropdown is visible on mobile
+          if (dropdown.style.display === "block" && window.innerWidth <= 768) {
+            const rect = button.getBoundingClientRect();
+            dropdown.style.left = "0";
+            dropdown.style.top = button.offsetHeight + 4 + "px";
+            dropdown.style.zIndex = "200";
+          }
+        }
       }
-    });
-  }
-
-  // Handle filter menu on mobile
-  const filterToggle = document.querySelector(".filter-toggle");
-  const filtersContainer = document.querySelector(".search-filters-container");
-
-  if (filterToggle && filtersContainer) {
-    filterToggle.addEventListener("click", () => {
-      filtersContainer.classList.toggle("expanded");
-      document.body.classList.toggle("filters-open");
-    });
-
-    // Close filters when clicking outside
-    document.addEventListener("click", (e) => {
-      if (
-        !filtersContainer.contains(e.target) &&
-        !filterToggle.contains(e.target) &&
-        filtersContainer.classList.contains("expanded")
-      ) {
-        filtersContainer.classList.remove("expanded");
-        document.body.classList.remove("filters-open");
-      }
-    });
-  }
-
-  // Handle responsive search field behavior
-  const searchFields = document.querySelectorAll(".search-field input");
-
-  searchFields.forEach((field) => {
-    field.addEventListener("focus", () => {
-      if (isMobile()) {
-        field.parentElement.classList.add("focused");
-        // Scroll the field into view to prevent keyboard from hiding it
-        field.scrollIntoView({ behavior: "smooth", block: "center" });
-      }
-    });
-
-    field.addEventListener("blur", () => {
-      field.parentElement.classList.remove("focused");
     });
   });
 
-  // Handle window resize events
-  let resizeTimeout;
-  window.addEventListener("resize", () => {
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(() => {
-      // Update mobile-specific UI elements
-      const isMobileView = isMobile();
-      document.body.classList.toggle("is-mobile", isMobileView);
+  // Special handling for house and rooms dropdowns
+  const houseBtn = document.getElementById("house-type-btn");
+  const houseDropdown = document.getElementById("house-dropdown");
+  const roomsBtn = document.getElementById("rooms-btn");
+  const roomsDropdown = document.getElementById("rooms-dropdown");
 
-      // Reset filters menu state on breakpoint change
-      if (!isMobileView) {
-        filtersContainer.classList.remove("expanded");
-        document.body.classList.remove("filters-open");
-      }
-    }, 250);
+  if (houseDropdown) {
+    const checkboxes = houseDropdown.querySelectorAll('input[type="checkbox"]');
+    checkboxes.forEach((checkbox) => {
+      checkbox.addEventListener("click", (e) => {
+        e.stopPropagation();
+      });
+    });
+  }
+
+  if (roomsDropdown) {
+    const checkboxes = roomsDropdown.querySelectorAll('input[type="checkbox"]');
+    checkboxes.forEach((checkbox) => {
+      checkbox.addEventListener("click", (e) => {
+        e.stopPropagation();
+      });
+    });
+  }
+
+  // Close dropdowns when clicking outside
+  document.addEventListener("click", (e) => {
+    if (
+      !e.target.closest(".filter-pill") &&
+      !e.target.closest(".dropdown-menu")
+    ) {
+      document.querySelectorAll(".dropdown-menu").forEach((dropdown) => {
+        dropdown.style.display = "none";
+      });
+    }
   });
-
-  // Initialize mobile detection on load
-  document.body.classList.toggle("is-mobile", isMobile());
 });
