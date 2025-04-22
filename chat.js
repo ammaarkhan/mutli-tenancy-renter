@@ -6,6 +6,46 @@ document.addEventListener("DOMContentLoaded", function () {
   const emojiButton = document.querySelector(".emoji-btn");
   const attachmentButton = document.querySelector(".attachment-btn");
 
+  // Modal elements
+  const addParticipantBtn = document.querySelector(
+    'button[title="Add participant"]'
+  );
+  const modal = document.getElementById("inviteModal");
+  const closeModalBtn = document.querySelector(".close-modal");
+  const inviteForm = document.getElementById("inviteForm");
+
+  // Remove participant functionality
+  document.querySelectorAll(".remove-participant").forEach((button) => {
+    button.addEventListener("click", function (e) {
+      e.preventDefault();
+      const participant = this.closest(".participant");
+      const participantName =
+        participant.querySelector(".participant-name").textContent;
+
+      if (
+        confirm(
+          `Are you sure you want to remove ${participantName} from the application?`
+        )
+      ) {
+        // Here you would typically make an API call to remove the participant
+        participant.style.opacity = "0";
+        setTimeout(() => {
+          participant.remove();
+          // Update the participants count
+          const participantsCount = document.querySelector(
+            ".participants-count"
+          );
+          const currentCount = parseInt(participantsCount.textContent);
+          participantsCount.textContent = `${currentCount - 1} participants`;
+          // Send a message in chat
+          sendMessage(
+            `${participantName} has been removed from the application.`
+          );
+        }, 200);
+      }
+    });
+  });
+
   // Send message function
   function sendMessage(message) {
     if (!message.trim()) return;
@@ -28,7 +68,17 @@ document.addEventListener("DOMContentLoaded", function () {
     chatInput.value = "";
   }
 
-  // Event listeners
+  // Modal functions
+  function openModal() {
+    modal.style.display = "block";
+  }
+
+  function closeModal() {
+    modal.style.display = "none";
+    inviteForm.reset();
+  }
+
+  // Event listeners for chat
   sendButton.addEventListener("click", () => {
     sendMessage(chatInput.value);
   });
@@ -38,6 +88,32 @@ document.addEventListener("DOMContentLoaded", function () {
       e.preventDefault();
       sendMessage(chatInput.value);
     }
+  });
+
+  // Event listeners for modal
+  addParticipantBtn.addEventListener("click", openModal);
+  closeModalBtn.addEventListener("click", closeModal);
+
+  // Close modal when clicking outside
+  window.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+
+  // Handle invite form submission
+  inviteForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const email = document.getElementById("inviteEmail").value;
+
+    // Here you would typically send the invitation to your backend
+    console.log(`Invitation sent to: ${email}`);
+
+    // Show success message in chat
+    sendMessage(`Invitation sent to ${email}`);
+
+    // Close the modal
+    closeModal();
   });
 
   // Placeholder functions for other buttons

@@ -125,6 +125,9 @@
               <span class="participant-name">Sarah Chen</span>
               <span class="participant-badge">Co-applicant</span>
             </div>
+            <button class="remove-participant" title="Remove co-applicant">
+              <i class="fas fa-times"></i>
+            </button>
           </div>
           <div class="participant">
             <img
@@ -135,6 +138,9 @@
               <span class="participant-name">Michael Ross</span>
               <span class="participant-badge">Co-applicant</span>
             </div>
+            <button class="remove-participant" title="Remove co-applicant">
+              <i class="fas fa-times"></i>
+            </button>
           </div>
         </div>
 
@@ -241,5 +247,169 @@
     </div>
 
     <script src="chat.js"></script>
+
+    <!-- Add Applicant Modal -->
+    <div id="inviteModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Invite Co-applicant</h3>
+          <button class="close-modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <form id="inviteForm">
+            <div class="form-group">
+              <label for="inviteEmail">Email address</label>
+              <input
+                type="email"
+                id="inviteEmail"
+                placeholder="Enter co-applicant's email"
+                required
+              />
+            </div>
+            <button type="submit" class="submit-btn">Send Invite</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <style>
+      /* Modal Styles */
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+      }
+
+      .modal-content {
+        position: relative;
+        background-color: #fff;
+        margin: 15% auto;
+        padding: 20px;
+        width: 90%;
+        max-width: 500px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+
+      .close-modal {
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        color: #666;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        color: #333;
+      }
+
+      .form-group input {
+        width: 100%;
+        padding: 8px 12px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 14px;
+      }
+
+      .submit-btn {
+        background-color: #4869af;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        width: 100%;
+        font-size: 16px;
+      }
+
+      .submit-btn:hover {
+        background-color: #3a5590;
+      }
+
+      /* Action button styles */
+      .action-btn {
+        background: none;
+        border: none;
+        padding: 8px;
+        cursor: pointer;
+        color: #4869af;
+        border-radius: 50%;
+        transition: background-color 0.2s;
+      }
+
+      .action-btn:hover {
+        background-color: rgba(72, 105, 175, 0.1);
+      }
+
+      .action-btn i {
+        font-size: 20px; /* Increased from default size */
+      }
+
+      /* Make the add participant button more prominent */
+      .action-btn[title="Add participant"] {
+        padding: 10px;
+      }
+
+      .action-btn[title="Add participant"] i {
+        font-size: 22px; /* Even larger for the add participant icon */
+      }
+
+      /* Participant styles */
+      .participant {
+        position: relative;
+        display: flex;
+        align-items: center;
+        padding: 8px 16px 8px 12px;
+        background: #fff;
+        border-radius: 8px;
+        margin-right: 8px;
+      }
+
+      .remove-participant {
+        position: absolute;
+        top: -6px;
+        right: -6px;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: rgba(255, 77, 77, 0.15);
+        color: #ff4d4d;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        transition: all 0.2s ease;
+      }
+
+      .remove-participant:hover {
+        background: #ff4d4d;
+        color: white;
+        transform: scale(1.1);
+      }
+
+      .participant:hover .remove-participant {
+        opacity: 1;
+      }
+    </style>
   </body>
 </html>
