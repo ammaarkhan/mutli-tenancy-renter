@@ -207,6 +207,27 @@
                 <span class="message-time">10:34 AM</span>
               </div>
             </div>
+
+            <div class="message system">
+              <div class="message-content">
+                <div class="system-icon">
+                  <i class="fas fa-info-circle"></i>
+                </div>
+                <div class="system-message">
+                  <p class="booking-message">
+                    John Approved your request. You have 7 days to review your
+                    contract and Finish booking.
+                  </p>
+                  <p class="safety-notice">
+                    Be safe. Don't send money directly to hosts.
+                  </p>
+                  <button class="finish-booking-btn">
+                    <i class="fas fa-check-circle"></i>
+                    Finish booking
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -268,6 +289,219 @@
             </div>
             <button type="submit" class="submit-btn">Send Invite</button>
           </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Finish Booking Modal -->
+    <div id="finishBookingModal" class="modal">
+      <div class="modal-content booking-modal">
+        <div class="modal-header">
+          <button class="close-modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="booking-steps">
+            <div class="steps-header">
+              <h2>Steps to finish booking</h2>
+              <p class="estimated-time">Estimated time: 5-10 min</p>
+            </div>
+            <div class="steps-content">
+              <div class="step-item">
+                <div class="step-indicator">
+                  <div class="step-number">1</div>
+                  <div class="step-line"></div>
+                </div>
+                <div class="step-text">Review, and sign bonding contract.</div>
+              </div>
+              <div class="step-item">
+                <div class="step-indicator">
+                  <div class="step-number">2</div>
+                </div>
+                <div class="step-text">Pay your deposit $ 800,00.</div>
+              </div>
+            </div>
+          </div>
+          <button class="start-btn">Start</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lease Agreement Modal -->
+    <div id="leaseAgreementModal" class="modal">
+      <div class="modal-content agreement-modal">
+        <div class="modal-header">
+          <button class="close-modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="agreement-content">
+            <h2>Living agreement</h2>
+            <div class="agreement-text">
+              <p>BACKGROUND:</p>
+              <p>
+                A. The Host has a Bedroom (as defined in this Agreement) at
+                their place of residence (the "Residence") located at 155 Ottawa
+                Street North, Hamilton, Ontario, L8H3Z2, Canada (the
+                "Premises").
+              </p>
+              <p>
+                B. The Host has listed the Bedroom on the Happipad housing
+                platform (the "Happipad Platform") and wishes to offer the
+                Bedroom to the Renter for rent and the Renter wishes to accept
+                the Bedroom for rent.
+              </p>
+              <p>
+                C. The Host and the Renter wish to enter into a living
+                arrangement (the "Living Arrangement") for their mutual benefit
+                and wish to record the terms and conditions of the Living
+                Arrangement in this Living Arrangement Agreement.
+              </p>
+
+              <p class="section-title">AGREEMENTS:</p>
+              <p>
+                In consideration of the mutual covenants contained in this
+                Agreement, the parties agree as follows:
+              </p>
+
+              <p class="section-title">1. Rental Agreement</p>
+              <p>
+                1.1 The Host agrees to rent to the Renter and the Renter agrees
+                to rent from the Host the Bedroom and access to, and use of, the
+                Shared Common Spaces (as defined in this Agreement).
+              </p>
+              <p>
+                1.2 The parties acknowledge that the nature of the Living
+                Arrangement constitutes a living accommodation in which the
+                Renter shares a bathroom or kitchen facilities with the Host,
+                and as such, pursuant to the Residential Tenancy Act of the
+                Province does not apply to this Agreement.
+              </p>
+
+              <!-- More agreement sections... -->
+            </div>
+          </div>
+          <button class="agree-btn">Agree and sign</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Signature Modal -->
+    <div id="signatureModal" class="modal">
+      <div class="modal-content signature-modal">
+        <div class="modal-header">
+          <h2>Sign your contract here</h2>
+        </div>
+        <div class="modal-body">
+          <div class="signature-pad-container">
+            <canvas id="signaturePad"></canvas>
+          </div>
+          <button class="confirm-btn">Confirm</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Payment Confirmation Modal -->
+    <div id="paymentConfirmationModal" class="modal">
+      <div class="modal-content payment-modal">
+        <div class="modal-header">
+          <button class="close-modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="payment-content">
+            <h2>Finish booking</h2>
+            <p class="subtitle">
+              You are required to pay deposit to finish booking.
+            </p>
+
+            <div class="payment-section">
+              <div class="payment-type-section">
+                <div class="section-header">
+                  <h3>Payment type</h3>
+                </div>
+
+                <div class="payment-options">
+                  <div class="payment-option">
+                    <div class="option-content">
+                      <div class="option-header">
+                        <span class="option-name">Deposit</span>
+                        <span class="option-price">$ 800.00</span>
+                      </div>
+                      <p class="description">One-time, refundable payment</p>
+                    </div>
+                    <div class="radio-button selected"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="cancellation-notice">
+                Free cancellation (exempt admin fee) before 04/04/25
+              </div>
+
+              <div class="insurance-section">
+                <div class="insurance-header">
+                  <h3>Insurance</h3>
+                </div>
+
+                <div class="insurance-options">
+                  <div class="insurance-option">
+                    <div class="option-content">
+                      <div class="option-header">
+                        <span class="option-name">Happi cover</span>
+                        <div class="option-price">
+                          <span class="price-current">$ 20.00</span>
+                        </div>
+                      </div>
+                      <p class="description">
+                        Covering break-ins, fires and more. Cancel any time.
+                      </p>
+                    </div>
+                    <div class="radio-button selected"></div>
+                  </div>
+
+                  <div class="insurance-option">
+                    <div class="option-content">
+                      <div class="option-header">
+                        <span class="option-name">I have my own insurance</span>
+                      </div>
+                      <p class="description">
+                        Liability Insurance Required of Renters. You will have
+                        to provide a photo copy.
+                      </p>
+                    </div>
+                    <div class="radio-button"></div>
+                  </div>
+                </div>
+
+                <div class="insurance-notice">
+                  <i class="fas fa-info-circle"></i>
+                  <p>
+                    Rental insurance is required. You can use any external one.
+                    Photocopy should be uploaded in "My stay" section 5 business
+                    days before first month payment, so we can confirm.
+                  </p>
+                </div>
+              </div>
+
+              <div class="summary-section">
+                <h3>Summary</h3>
+                <div class="summary-items">
+                  <div class="summary-item">
+                    <span>Subtotal</span>
+                    <span>$ 820.00</span>
+                  </div>
+                  <div class="summary-item">
+                    <span>Taxes</span>
+                    <span>$ 23.80</span>
+                  </div>
+                  <div class="summary-item total">
+                    <span>Total</span>
+                    <span>$ 843.80</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="pay-btn">Pay $ 843.80</button>
+          <p class="terms">Happipad Privacy policy and Terms of use apply.</p>
         </div>
       </div>
     </div>
@@ -410,6 +644,978 @@
       .participant:hover .remove-participant {
         opacity: 1;
       }
+
+      /* Booking action styles */
+      .booking-action {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 16px;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.95);
+        border-top: 1px solid #e4e6ef;
+      }
+
+      .booking-info {
+        text-align: center;
+        margin-bottom: 16px;
+        width: 100%;
+      }
+
+      .booking-message {
+        font-family: "NexaRegular", sans-serif;
+        font-size: 14px;
+        line-height: 1.4;
+        color: #3c3f4c;
+        margin-bottom: 8px;
+        letter-spacing: 0.01em;
+      }
+
+      .safety-notice {
+        font-family: "NexaRegular", sans-serif;
+        font-size: 11px;
+        line-height: 1.4;
+        color: #6d6f79;
+      }
+
+      .finish-booking-btn {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 14px 24px;
+        background: #4869af;
+        color: white;
+        border: none;
+        border-radius: 999px;
+        font-family: "Nexa-Bold", sans-serif;
+        font-size: 15px;
+        line-height: 1.28;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .finish-booking-btn:hover {
+        background: #3a5590;
+        transform: translateY(-1px);
+      }
+
+      .finish-booking-btn i {
+        font-size: 18px;
+      }
+
+      /* Finish Booking Modal Styles */
+      .booking-modal {
+        max-width: 375px;
+        padding: 0;
+        border-radius: 33px 33px 0 0;
+        background: #f5f5fa;
+      }
+
+      .booking-modal .modal-header {
+        background: white;
+        padding: 16px;
+        border-bottom: 1px solid #ebebf0;
+        border-radius: 33px 33px 0 0;
+        display: flex;
+        justify-content: center;
+        position: relative;
+      }
+
+      .booking-modal .close-modal {
+        position: absolute;
+        left: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #3c3f4c;
+        padding: 8px;
+        font-size: 24px;
+      }
+
+      .booking-modal .modal-body {
+        padding: 24px 16px;
+      }
+
+      .booking-steps {
+        background: white;
+        border-radius: 8px;
+        padding: 24px 16px;
+        margin-bottom: 24px;
+      }
+
+      .steps-header {
+        text-align: center;
+        margin-bottom: 24px;
+      }
+
+      .steps-header h2 {
+        font-family: "Sora", sans-serif;
+        font-weight: 700;
+        font-size: 22px;
+        color: #182d4c;
+        margin-bottom: 8px;
+      }
+
+      .estimated-time {
+        font-family: "NexaRegular", sans-serif;
+        font-size: 16px;
+        color: #3c3f4c;
+      }
+
+      .steps-content {
+        padding: 16px 0;
+      }
+
+      .step-item {
+        display: flex;
+        gap: 18px;
+        margin-bottom: 16px;
+      }
+
+      .step-indicator {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+      }
+
+      .step-number {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: #b7b7bd;
+        border: 1px solid rgba(60, 63, 76, 0.6);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgba(60, 63, 76, 0.6);
+        font-family: "Sora", sans-serif;
+        font-size: 20px;
+      }
+
+      .step-line {
+        position: absolute;
+        top: 32px;
+        width: 2px;
+        height: 48px;
+        background: rgba(60, 63, 76, 0.6);
+      }
+
+      .step-text {
+        font-family: "NexaRegular", sans-serif;
+        font-size: 18px;
+        color: #6d6f79;
+        padding: 8px 0;
+      }
+
+      .start-btn {
+        width: 100%;
+        padding: 16px 24px;
+        background: #4869af;
+        color: white;
+        border: none;
+        border-radius: 999px;
+        font-family: "Nexa-Bold", sans-serif;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+      }
+
+      .start-btn:hover {
+        background: #3a5590;
+      }
+
+      /* Lease Agreement Modal Styles */
+      .agreement-modal {
+        max-width: 800px;
+        width: 90%;
+        padding: 0;
+        border-radius: 12px;
+        background: #f5f5fa;
+        max-height: 80vh;
+        display: flex;
+        flex-direction: column;
+        margin: 5vh auto;
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+      }
+
+      .agreement-modal .modal-header {
+        background: white;
+        padding: 24px;
+        border-bottom: 1px solid #ebebf0;
+        border-radius: 12px 12px 0 0;
+        display: flex;
+        justify-content: flex-start;
+        position: relative;
+      }
+
+      .agreement-modal .close-modal {
+        position: absolute;
+        right: 24px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: #f5f5fa;
+        color: #3c3f4c;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+      }
+
+      .agreement-modal .close-modal:hover {
+        background: #ebebf0;
+      }
+
+      .agreement-modal .modal-body {
+        padding: 32px;
+        overflow-y: auto;
+        flex-grow: 1;
+      }
+
+      .agreement-content {
+        background: white;
+        border-radius: 12px;
+        padding: 32px;
+        margin-bottom: 32px;
+      }
+
+      .agreement-content h2 {
+        font-family: "Sora", sans-serif;
+        font-weight: 700;
+        font-size: 28px;
+        color: #182d4c;
+        margin-bottom: 24px;
+      }
+
+      .agreement-text {
+        font-family: "NexaRegular", sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        color: #3c3f4c;
+        max-width: 100%;
+        margin: 0 auto;
+      }
+
+      .agreement-text p {
+        margin-bottom: 20px;
+      }
+
+      .agreement-text .section-title {
+        font-weight: 600;
+        margin-top: 32px;
+        color: #182d4c;
+      }
+
+      .agree-btn {
+        width: 100%;
+        max-width: 320px;
+        margin: 0 auto;
+        padding: 16px 32px;
+        background: #4869af;
+        color: white;
+        border: none;
+        border-radius: 999px;
+        font-family: "Nexa-Bold", sans-serif;
+        font-size: 16px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        display: block;
+      }
+
+      .agree-btn:hover {
+        background: #3a5590;
+        transform: translateY(-1px);
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 768px) {
+        .agreement-modal {
+          max-width: 375px;
+          margin: 0 auto;
+          border-radius: 33px 33px 0 0;
+          max-height: 90vh;
+        }
+
+        .agreement-modal .modal-header {
+          padding: 16px;
+          border-radius: 33px 33px 0 0;
+        }
+
+        .agreement-modal .modal-body {
+          padding: 24px 16px;
+        }
+
+        .agreement-content {
+          padding: 24px 16px;
+        }
+
+        .agreement-content h2 {
+          font-size: 22px;
+        }
+      }
+
+      /* Signature Modal Styles */
+      .signature-modal {
+        max-width: 600px;
+        width: 90%;
+        padding: 32px;
+        border-radius: 24px;
+        background: white;
+        margin: 5vh auto;
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+      }
+
+      .signature-modal .modal-header {
+        text-align: center;
+        margin-bottom: 24px;
+      }
+
+      .signature-modal .modal-header h2 {
+        font-family: "Sora", sans-serif;
+        font-weight: 600;
+        font-size: 24px;
+        color: #182d4c;
+        margin: 0;
+      }
+
+      .signature-pad-container {
+        width: 100%;
+        height: 300px;
+        background: #f8f9fd;
+        border-radius: 16px;
+        margin-bottom: 24px;
+        overflow: hidden;
+      }
+
+      #signaturePad {
+        width: 100%;
+        height: 100%;
+        cursor: crosshair;
+      }
+
+      .confirm-btn {
+        width: 100%;
+        padding: 16px;
+        background: #4869af;
+        color: white;
+        border: none;
+        border-radius: 999px;
+        font-family: "Nexa-Bold", sans-serif;
+        font-size: 16px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .confirm-btn:hover {
+        background: #3a5590;
+        transform: translateY(-1px);
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 768px) {
+        .signature-modal {
+          max-width: 375px;
+          padding: 24px;
+        }
+
+        .signature-pad-container {
+          height: 250px;
+        }
+      }
+
+      /* Payment Modal Styles */
+      .payment-modal {
+        max-width: 800px;
+        width: 90%;
+        padding: 0;
+        border-radius: 12px;
+        background: #f5f5fa;
+        max-height: 90vh;
+        display: flex;
+        flex-direction: column;
+        margin: 5vh auto;
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+      }
+
+      .payment-modal .modal-header {
+        background: white;
+        padding: 24px;
+        border-bottom: 1px solid #ebebf0;
+        border-radius: 12px 12px 0 0;
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      .payment-modal .close-modal {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: #f5f5fa;
+        color: #3c3f4c;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+        border: none;
+        font-size: 24px;
+      }
+
+      .payment-modal .close-modal:hover {
+        background: #ebebf0;
+      }
+
+      .payment-modal .modal-body {
+        padding: 32px;
+        overflow-y: auto;
+      }
+
+      .payment-content {
+        background: white;
+        border-radius: 12px;
+        padding: 32px;
+        margin-bottom: 32px;
+      }
+
+      .payment-content h2 {
+        font-family: "Sora", sans-serif;
+        font-weight: 700;
+        font-size: 28px;
+        color: #182d4c;
+        margin-bottom: 16px;
+      }
+
+      .subtitle {
+        font-family: "NexaRegular", sans-serif;
+        font-size: 16px;
+        color: #3c3f4c;
+        margin-bottom: 32px;
+      }
+
+      .payment-section {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      .payment-type-section {
+        background: white;
+        border-radius: 12px;
+        padding: 24px;
+        border: 1px solid #e4e6ef;
+      }
+
+      .section-header {
+        margin-bottom: 24px;
+      }
+
+      .section-header h3 {
+        font-family: "Nexa-Bold", sans-serif;
+        font-size: 18px;
+        color: #182d4c;
+      }
+
+      .payment-options {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .payment-option {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 16px;
+        border: 1px solid #e4e6ef;
+        border-radius: 8px;
+        background: white;
+      }
+
+      .option-content {
+        flex: 1;
+        margin-right: 16px;
+      }
+
+      .option-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 8px;
+      }
+
+      .option-name {
+        font-family: "Nexa-Bold", sans-serif;
+        font-size: 16px;
+        color: #182d4c;
+      }
+
+      .option-price {
+        font-family: "Nexa-Bold", sans-serif;
+        font-size: 16px;
+        color: #182d4c;
+      }
+
+      .description {
+        font-family: "NexaRegular", sans-serif;
+        font-size: 14px;
+        color: rgba(60, 63, 76, 0.75);
+        line-height: 1.4;
+      }
+
+      .radio-button {
+        width: 24px;
+        height: 24px;
+        border: 2px solid #c9cbd7;
+        border-radius: 50%;
+        position: relative;
+        flex-shrink: 0;
+      }
+
+      .radio-button.selected {
+        border-color: #4869af;
+      }
+
+      .radio-button.selected::after {
+        content: "";
+        position: absolute;
+        width: 14px;
+        height: 14px;
+        background: #4869af;
+        border-radius: 50%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      .insurance-section {
+        background: white;
+        border-radius: 12px;
+        padding: 24px;
+        border: 1px solid #e4e6ef;
+      }
+
+      .insurance-header {
+        margin-bottom: 24px;
+      }
+
+      .insurance-header h3 {
+        font-family: "Nexa-Bold", sans-serif;
+        font-size: 18px;
+        color: #182d4c;
+      }
+
+      .insurance-options {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .insurance-option {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 16px;
+        border: 1px solid #e4e6ef;
+        border-radius: 8px;
+        background: white;
+      }
+
+      .insurance-notice {
+        display: flex;
+        gap: 12px;
+        padding: 16px;
+        background: #eaf2ff;
+        border-radius: 8px;
+        margin-top: 24px;
+      }
+
+      .insurance-notice i {
+        color: #2563eb;
+        font-size: 18px;
+        margin-top: 2px;
+      }
+
+      .insurance-notice p {
+        font-family: "NexaRegular", sans-serif;
+        font-size: 14px;
+        color: #3c3f4c;
+        line-height: 1.5;
+      }
+
+      .summary-section {
+        background: white;
+        border-radius: 12px;
+        padding: 24px;
+        border: 1px solid #e4e6ef;
+      }
+
+      .summary-section h3 {
+        font-family: "Nexa-Bold", sans-serif;
+        font-size: 18px;
+        color: #182d4c;
+        margin-bottom: 16px;
+      }
+
+      .summary-items {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .summary-item {
+        display: flex;
+        justify-content: space-between;
+        font-family: "NexaRegular", sans-serif;
+        font-size: 16px;
+        color: #3c3f4c;
+      }
+
+      .summary-item.total {
+        font-family: "Nexa-Bold", sans-serif;
+        color: #182d4c;
+        border-top: 1px solid #e4e6ef;
+        margin-top: 8px;
+        padding-top: 16px;
+      }
+
+      .pay-btn {
+        width: 100%;
+        padding: 16px 24px;
+        background: #4869af;
+        color: white;
+        border: none;
+        border-radius: 999px;
+        font-family: "Nexa-Bold", sans-serif;
+        font-size: 16px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .pay-btn:hover {
+        background: #3a5590;
+        transform: translateY(-1px);
+      }
+
+      .terms {
+        font-family: "NexaRegular", sans-serif;
+        font-size: 14px;
+        color: #6d6f79;
+        text-align: center;
+        margin-top: 16px;
+      }
+
+      @media (max-width: 768px) {
+        .payment-modal {
+          max-width: 100%;
+          margin: 0;
+          border-radius: 33px 33px 0 0;
+          max-height: 90vh;
+        }
+
+        .payment-modal .modal-header {
+          border-radius: 33px 33px 0 0;
+        }
+
+        .payment-modal .modal-body {
+          padding: 24px 16px;
+        }
+
+        .payment-content {
+          padding: 24px 16px;
+        }
+
+        .payment-content h2 {
+          font-size: 24px;
+        }
+      }
+
+      /* Update system message styles */
+      .message.system {
+        display: flex;
+        justify-content: center;
+        margin: 24px 0;
+        padding: 0 24px;
+      }
+
+      .message.system .message-content {
+        background: #f0f7ff;
+        border-radius: 16px;
+        padding: 24px;
+        width: 100%;
+        max-width: 600px;
+        display: flex;
+        gap: 16px;
+      }
+
+      .system-icon {
+        color: #4869af;
+        font-size: 20px;
+        flex-shrink: 0;
+      }
+
+      .system-message {
+        flex: 1;
+      }
+
+      .system-message .booking-message {
+        font-family: "NexaRegular", sans-serif;
+        font-size: 16px;
+        line-height: 1.5;
+        color: #3c3f4c;
+        margin-bottom: 12px;
+      }
+
+      .system-message .safety-notice {
+        font-family: "NexaRegular", sans-serif;
+        font-size: 14px;
+        line-height: 1.5;
+        color: #6d6f79;
+        margin-bottom: 24px;
+      }
+
+      .system-message .finish-booking-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 24px;
+        background: #4869af;
+        color: white;
+        border: none;
+        border-radius: 999px;
+        font-family: "Nexa-Bold", sans-serif;
+        font-size: 15px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .system-message .finish-booking-btn i {
+        font-size: 18px;
+      }
+
+      @media (max-width: 768px) {
+        .message.system {
+          padding: 0 16px;
+        }
+
+        .message.system .message-content {
+          padding: 20px;
+        }
+
+        .system-message .booking-message {
+          font-size: 15px;
+        }
+
+        .system-message .finish-booking-btn {
+          padding: 10px 20px;
+          font-size: 14px;
+        }
+
+        .system-message .finish-booking-btn i {
+          font-size: 16px;
+        }
+      }
     </style>
+
+    <script>
+      // ... existing script ...
+
+      // Finish Booking Modal functionality
+      const finishBookingBtn = document.querySelector(".finish-booking-btn");
+      const finishBookingModal = document.getElementById("finishBookingModal");
+      const closeFinishBookingModal =
+        finishBookingModal.querySelector(".close-modal");
+
+      finishBookingBtn.addEventListener("click", () => {
+        finishBookingModal.style.display = "block";
+      });
+
+      closeFinishBookingModal.addEventListener("click", () => {
+        finishBookingModal.style.display = "none";
+      });
+
+      window.addEventListener("click", (event) => {
+        if (event.target === finishBookingModal) {
+          finishBookingModal.style.display = "none";
+        }
+      });
+
+      // Lease Agreement Modal functionality
+      const startBtn = document.querySelector(".start-btn");
+      const leaseAgreementModal = document.getElementById(
+        "leaseAgreementModal"
+      );
+      const closeLeaseAgreementModal =
+        leaseAgreementModal.querySelector(".close-modal");
+
+      startBtn.addEventListener("click", () => {
+        finishBookingModal.style.display = "none";
+        leaseAgreementModal.style.display = "block";
+      });
+
+      closeLeaseAgreementModal.addEventListener("click", () => {
+        leaseAgreementModal.style.display = "none";
+      });
+
+      window.addEventListener("click", (event) => {
+        if (event.target === leaseAgreementModal) {
+          leaseAgreementModal.style.display = "none";
+        }
+      });
+
+      // Signature Modal functionality
+      const agreeBtn = document.querySelector(".agree-btn");
+      const signatureModal = document.getElementById("signatureModal");
+      let signaturePad;
+
+      agreeBtn.addEventListener("click", () => {
+        leaseAgreementModal.style.display = "none";
+        signatureModal.style.display = "block";
+        initializeSignaturePad();
+      });
+
+      function initializeSignaturePad() {
+        const canvas = document.getElementById("signaturePad");
+        const ctx = canvas.getContext("2d");
+
+        // Set canvas size
+        function resizeCanvas() {
+          const container = canvas.parentElement;
+          canvas.width = container.offsetWidth;
+          canvas.height = container.offsetHeight;
+        }
+        resizeCanvas();
+
+        // Initialize signature pad
+        let isDrawing = false;
+        let lastX = 0;
+        let lastY = 0;
+
+        ctx.strokeStyle = "#182D4C";
+        ctx.lineWidth = 2;
+        ctx.lineCap = "round";
+
+        canvas.addEventListener("mousedown", startDrawing);
+        canvas.addEventListener("mousemove", draw);
+        canvas.addEventListener("mouseup", stopDrawing);
+        canvas.addEventListener("mouseout", stopDrawing);
+
+        // Touch events
+        canvas.addEventListener("touchstart", (e) => {
+          e.preventDefault();
+          const touch = e.touches[0];
+          const mouseEvent = new MouseEvent("mousedown", {
+            clientX: touch.clientX,
+            clientY: touch.clientY,
+          });
+          canvas.dispatchEvent(mouseEvent);
+        });
+
+        canvas.addEventListener("touchmove", (e) => {
+          e.preventDefault();
+          const touch = e.touches[0];
+          const mouseEvent = new MouseEvent("mousemove", {
+            clientX: touch.clientX,
+            clientY: touch.clientY,
+          });
+          canvas.dispatchEvent(mouseEvent);
+        });
+
+        canvas.addEventListener("touchend", (e) => {
+          e.preventDefault();
+          const mouseEvent = new MouseEvent("mouseup", {});
+          canvas.dispatchEvent(mouseEvent);
+        });
+
+        function startDrawing(e) {
+          isDrawing = true;
+          [lastX, lastY] = [e.offsetX, e.offsetY];
+        }
+
+        function draw(e) {
+          if (!isDrawing) return;
+
+          ctx.beginPath();
+          ctx.moveTo(lastX, lastY);
+          ctx.lineTo(e.offsetX, e.offsetY);
+          ctx.stroke();
+
+          [lastX, lastY] = [e.offsetX, e.offsetY];
+        }
+
+        function stopDrawing() {
+          isDrawing = false;
+        }
+      }
+
+      // Update signature modal confirm button functionality
+      const paymentConfirmationModal = document.getElementById(
+        "paymentConfirmationModal"
+      );
+      const confirmBtn = document.querySelector(".confirm-btn");
+      confirmBtn.addEventListener("click", () => {
+        signatureModal.style.display = "none";
+        paymentConfirmationModal.style.display = "block";
+      });
+
+      // Payment confirmation modal close functionality
+      const closePaymentModal =
+        paymentConfirmationModal.querySelector(".close-modal");
+      closePaymentModal.addEventListener("click", () => {
+        paymentConfirmationModal.style.display = "none";
+      });
+
+      window.addEventListener("click", (event) => {
+        if (event.target === paymentConfirmationModal) {
+          paymentConfirmationModal.style.display = "none";
+        }
+      });
+
+      // Payment confirmation handling
+      const payBtn = document.querySelector(".pay-btn");
+      payBtn.addEventListener("click", () => {
+        // Close the payment modal
+        paymentConfirmationModal.style.display = "none";
+
+        // Add success message to chat
+        const messagesContainer = document.querySelector(".chat-messages");
+        const messageGroup = document.querySelector(".message-group");
+
+        const successMessage = document.createElement("div");
+        successMessage.className = "message system";
+        successMessage.innerHTML = `
+          <div class="message-content">
+            <div class="system-icon">
+              <i class="fas fa-info-circle"></i>
+            </div>
+            <div class="system-message">
+              <p class="booking-message">
+                You booked John's place. Your deposit was successful.
+              </p>
+            </div>
+          </div>
+        `;
+
+        messageGroup.appendChild(successMessage);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+      });
+
+      // Remove the booking-action div since we moved it to the chat
+      const bookingAction = document.querySelector(".booking-action");
+      if (bookingAction) {
+        bookingAction.remove();
+      }
+    </script>
   </body>
 </html>
