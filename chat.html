@@ -334,9 +334,23 @@
         </div>
         <div class="modal-body">
           <div class="agreement-content">
-            <h2>Living agreement</h2>
+            <h2>Tenancy Agreement</h2>
             <div class="agreement-text">
-              <p>BACKGROUND:</p>
+              <div class="form-section">
+                <p><strong>Renter's Legal Name</strong></p>
+                <p>John Doe</p>
+
+                <p><strong>Rental dates</strong></p>
+                <p>Jan 14, 2025 - Jan 14, 2026</p>
+
+                <p><strong>Rent</strong></p>
+                <p>$ 1,200</p>
+
+                <p><strong>Deposit</strong></p>
+                <p>$ 800</p>
+              </div>
+
+              <p class="section-title">BACKGROUND:</p>
               <p>
                 A. The Host has a Bedroom (as defined in this Agreement) at
                 their place of residence (the "Residence") located at 155 Ottawa
@@ -354,6 +368,11 @@
                 arrangement (the "Living Arrangement") for their mutual benefit
                 and wish to record the terms and conditions of the Living
                 Arrangement in this Living Arrangement Agreement.
+              </p>
+              <p>
+                D. Both parties acknowledge that this agreement is governed by
+                the laws of the Province of Ontario and all applicable federal
+                laws of Canada.
               </p>
 
               <p class="section-title">AGREEMENTS:</p>
@@ -375,8 +394,121 @@
                 and as such, pursuant to the Residential Tenancy Act of the
                 Province does not apply to this Agreement.
               </p>
+              <p>
+                1.3 The term of this Living Arrangement will be the period
+                between the dates shown above (the "Term"), beginning and ending
+                at 12:00 PM (noon) on the respective dates.
+              </p>
 
-              <!-- More agreement sections... -->
+              <p class="section-title">2. Rent and Deposit</p>
+              <p>
+                2.1 The Renter agrees to pay the Host rent in the amount
+                specified above (the "Rent") on the first day of each month
+                during the Term.
+              </p>
+              <p>
+                2.2 The security deposit amount specified above (the "Deposit")
+                shall be held by Happipad in trust and will be returned to the
+                Renter within 15 days of the end of the Term, less any
+                deductions for damages beyond normal wear and tear.
+              </p>
+              <p>
+                2.3 Late payments will incur a fee of 5% if not received within
+                5 days of the due date.
+              </p>
+
+              <p class="section-title">3. Utilities and Services</p>
+              <p>
+                3.1 The following utilities and services are included in the
+                Rent:
+              </p>
+              <ul>
+                <li>Heat and electricity</li>
+                <li>Water and sewage</li>
+                <li>Internet access</li>
+                <li>Basic cleaning of common areas</li>
+              </ul>
+              <p>
+                3.2 The Renter is responsible for their own phone service and
+                any additional services not listed above.
+              </p>
+
+              <p class="section-title">4. Use of Premises</p>
+              <p>
+                4.1 The Renter shall use the Bedroom and Shared Common Spaces
+                for residential purposes only.
+              </p>
+              <p>4.2 The Renter shall not:</p>
+              <ul>
+                <li>Sublet or assign the Bedroom or any part thereof</li>
+                <li>
+                  Make alterations or additions to the Bedroom without written
+                  consent
+                </li>
+                <li>Conduct any illegal activities on the Premises</li>
+                <li>Create unreasonable noise or disturbance</li>
+              </ul>
+
+              <p class="section-title">5. Maintenance and Repairs</p>
+              <p>
+                5.1 The Renter shall keep the Bedroom and their share of the
+                Shared Common Spaces in a clean and sanitary condition.
+              </p>
+              <p>
+                5.2 The Renter shall promptly report any damage or necessary
+                repairs to the Host.
+              </p>
+              <p>
+                5.3 The Host shall maintain the Premises in a good state of
+                repair and fit for habitation.
+              </p>
+
+              <p class="section-title">6. Insurance and Liability</p>
+              <p>
+                6.1 The Renter shall obtain and maintain tenant insurance
+                coverage for their personal belongings and liability.
+              </p>
+              <p>
+                6.2 The Host is not responsible for damage to or theft of the
+                Renter's personal property.
+              </p>
+
+              <p class="section-title">7. Termination</p>
+              <p>
+                7.1 Either party may terminate this Agreement with 60 days
+                written notice.
+              </p>
+              <p>
+                7.2 The Host may terminate this Agreement immediately for any
+                breach of the terms herein.
+              </p>
+
+              <p class="section-title">8. House Rules</p>
+              <p>
+                8.1 The Renter agrees to comply with the House Rules, which form
+                part of this Agreement.
+              </p>
+              <p>
+                8.2 The Host may modify the House Rules with reasonable notice
+                to the Renter.
+              </p>
+
+              <p class="section-title">9. Quiet Enjoyment</p>
+              <p>
+                9.1 The Host covenants that the Renter shall have quiet
+                enjoyment of the Bedroom and reasonable use of the Shared Common
+                Spaces.
+              </p>
+
+              <p class="section-title">10. Dispute Resolution</p>
+              <p>
+                10.1 Any disputes arising from this Agreement shall first be
+                attempted to be resolved through mediation.
+              </p>
+              <p>
+                10.2 If mediation is unsuccessful, disputes shall be resolved
+                through arbitration in accordance with the laws of Ontario.
+              </p>
             </div>
           </div>
           <button class="agree-btn">Agree and sign</button>
@@ -705,9 +837,9 @@
 
       /* Finish Booking Modal Styles */
       .booking-modal {
-        max-width: 375px;
+        max-width: 600px;
         padding: 0;
-        border-radius: 33px 33px 0 0;
+        border-radius: 33px;
         background: #f5f5fa;
       }
 
@@ -737,9 +869,10 @@
 
       .booking-steps {
         background: white;
-        border-radius: 8px;
+        border-radius: 12px;
         padding: 24px 16px;
         margin-bottom: 24px;
+        margin-top: 0;
       }
 
       .steps-header {
@@ -1425,6 +1558,40 @@
         .system-message .finish-booking-btn i {
           font-size: 16px;
         }
+      }
+
+      .form-section {
+        background: #f8f9fd;
+        padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 24px;
+      }
+
+      .form-section p {
+        margin: 8px 0;
+      }
+
+      .form-section strong {
+        color: #666;
+        font-size: 0.9em;
+      }
+
+      .agreement-text ul {
+        margin: 10px 0;
+        padding-left: 20px;
+      }
+
+      .agreement-text ul li {
+        margin: 5px 0;
+        color: #3c3f4c;
+        line-height: 1.5;
+      }
+
+      .section-title {
+        color: #182d4c;
+        font-weight: 600;
+        margin-top: 24px;
+        margin-bottom: 16px;
       }
     </style>
 
