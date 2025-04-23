@@ -638,6 +638,21 @@
       </div>
     </div>
 
+    <!-- Success Modal -->
+    <div id="successModal" class="modal">
+      <div class="modal-content success-modal">
+        <button class="close-modal">&times;</button>
+        <div class="success-content">
+          <h2>Payment is completed.</h2>
+          <p>You've paid CA$ 800.00</p>
+          <p>Receipt will be sent to johndoe@gmail.com.</p>
+          <div class="success-icon">
+            <i class="fas fa-check-circle"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <style>
       /* Modal Styles */
       .modal {
@@ -1593,6 +1608,66 @@
         margin-top: 24px;
         margin-bottom: 16px;
       }
+
+      /* Success Modal Styles */
+      .success-modal {
+        text-align: center;
+        padding: 40px;
+        position: relative;
+      }
+
+      .success-modal .close-modal {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: #f5f5fa;
+        color: #3c3f4c;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+        border: none;
+        font-size: 24px;
+      }
+
+      .success-modal .close-modal:hover {
+        background: #ebebf0;
+      }
+
+      .success-modal h2 {
+        font-family: "Sora", sans-serif;
+        font-size: 28px;
+        color: #182d4c;
+        margin-bottom: 16px;
+      }
+
+      .success-modal p {
+        font-size: 16px;
+        color: #6d6f79;
+        margin-bottom: 8px;
+      }
+
+      .success-icon {
+        margin-top: 40px;
+        width: 80px;
+        height: 80px;
+        background: #e8f5e9;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .success-icon i {
+        font-size: 40px;
+        color: #4caf50;
+      }
     </style>
 
     <script>
@@ -1755,10 +1830,34 @@
         // Close the payment modal
         paymentConfirmationModal.style.display = "none";
 
-        // Add success message to chat
+        // Remove the old system message
+        const oldSystemMessage = document.querySelector(".message.system");
+        if (oldSystemMessage) {
+          oldSystemMessage.remove();
+        }
+
+        // Add success messages to chat
         const messagesContainer = document.querySelector(".chat-messages");
         const messageGroup = document.querySelector(".message-group");
 
+        // Add contract signed message
+        const contractMessage = document.createElement("div");
+        contractMessage.className = "message system";
+        contractMessage.innerHTML = `
+          <div class="message-content">
+            <div class="system-icon">
+              <i class="fas fa-info-circle"></i>
+            </div>
+            <div class="system-message">
+              <p class="booking-message">
+                You've signed the contract
+              </p>
+            </div>
+          </div>
+        `;
+        messageGroup.appendChild(contractMessage);
+
+        // Add booking success message
         const successMessage = document.createElement("div");
         successMessage.className = "message system";
         successMessage.innerHTML = `
@@ -1773,9 +1872,33 @@
             </div>
           </div>
         `;
-
         messageGroup.appendChild(successMessage);
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+        // Show success modal
+        const successModal = document.getElementById("successModal");
+        successModal.style.display = "block";
+      });
+
+      // Close success modal when clicking outside or on close button
+      const successModal = document.getElementById("successModal");
+      const closeSuccessModal = successModal.querySelector(".close-modal");
+
+      closeSuccessModal.addEventListener("click", () => {
+        successModal.style.display = "none";
+      });
+
+      window.addEventListener("click", (event) => {
+        if (event.target === successModal) {
+          successModal.style.display = "none";
+        }
+      });
+
+      // View booking button click handler
+      const viewBookingBtn = document.querySelector(".view-booking-btn");
+      viewBookingBtn.addEventListener("click", () => {
+        successModal.style.display = "none";
+        // Add navigation to booking page here
       });
 
       // Remove the booking-action div since we moved it to the chat
