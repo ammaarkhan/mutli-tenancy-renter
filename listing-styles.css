@@ -290,15 +290,32 @@ body {
 
 .add-applicant {
   width: 100%;
-  padding: 0.75rem;
-  border: 1px dashed var(--border-color);
-  border-radius: 8px;
-  background: none;
+  padding: 16px;
+  border: 2px dashed var(--primary-color);
+  border-radius: 10px;
+  background: white;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 12px;
+  transition: all 0.2s ease;
+}
+
+.add-applicant:hover {
+  background: #f0f7ff;
+  border-color: #3a5590;
+}
+
+.add-applicant i {
+  font-size: 15px;
+  color: var(--primary-color);
+}
+
+.add-applicant span {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--primary-color);
 }
 
 .message-host {
